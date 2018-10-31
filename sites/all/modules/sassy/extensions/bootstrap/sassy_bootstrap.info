@@ -1,0 +1,12 @@
+name = Sassy Bootstrap integration
+description = Adds the Bootstrap namespace to Sassy @import statements, and makes available the Bootstrap JS plugins as libraries
+package = 'Theming Tools'
+core = 7.x
+dependencies[] = sassy
+
+; Information added by Drupal.org packaging script on 2017-04-27
+version = "7.x-2.21"
+core = "7.x"
+project = "sassy"
+datestamp = "1493315345"
+

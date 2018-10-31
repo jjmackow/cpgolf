@@ -1,0 +1,24 @@
+// TODO add tests for:
+// * stylesheet-url
+// * font-url
+// * image-url
+//   - Stream wrapper based URI.
+// * generated-image-url
+
+// Image URL tests.
+
+// image-url that's relative to the Drupal root.
+.image-url-rel-root {
+  background-image: image-url('misc/druplicon.png');
+}
+
+// image-url that's relative to the current directory.
+.image-url-rel-pwd {
+  background-image: image-url('images/druplicon.png');
+}
+
+// image-url that just returns the url.
+.image-url-no-url {
+  background-image: image-url('misc/druplicon.png', true);
+}
+

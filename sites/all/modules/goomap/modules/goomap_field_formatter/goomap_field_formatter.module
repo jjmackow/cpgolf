@@ -1,0 +1,102 @@
+<?php
+
+/**
+ * @file
+ * Goomap Field Formatter module file.
+ */
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function goomap_field_formatter_field_formatter_info() {
+  $formatter = array(
+    'goomap_formatter' => array( //Machine name of the formatter
+      'label' => t('Goomap'),
+      'field types' => array('geofield'), //This will only be available to text fields
+      'settings' => array(
+        'display_together' => 1,
+      ),
+    ),
+  );
+  $default_settings_form_values = goomap_settings_form_values();
+  foreach($default_settings_form_values as $key => $value) {
+    $formatter['goomap_formatter']['settings'][$key] = $value['#default_value'];
+  }
+  return $formatter;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function goomap_field_formatter_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $element['display_together'] = array(
+    '#title' => t('Display all on single map.'),
+    '#type' => 'checkbox',
+    '#default_value' => $settings['display_together'],
+    '#description' => t('If set, multiple values in a single field will all display on a single map.')
+  );
+  
+  $element = array_merge($element, goomap_settings_form(array(), $settings));
+  /*
+  foreach($settings as $key => $value) {
+    if(isset($element[$key])) {
+      $element[$key]['#default_value'] = $settings[$key];
+    }
+  }
+  */
+  $element['tokens'] = array(
+    '#theme' => 'token_tree_link',
+    '#token_types' => array($instance['entity_type']),
+  );
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function goomap_field_formatter_field_formatter_settings_summary($field, $instance, $view_mode) {
+  return 'Goomap settings.';
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function goomap_field_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $lang_code, $items, $display) {
+  //dpm(func_get_args());
+  $elements = array();
+  $settings = $display['settings'];
+  $mapitems = array();
+  foreach ($items as $delta => $item) {
+    $newitem = array(
+      'geodata' => $item,
+      'markerOptions' => (array)json_decode(token_replace($settings['markerOptionsJson'], array($entity_type => $entity))),
+      'infowindowContent' => token_replace($settings['infowindowContent'], array($entity_type => $entity)),
+    );
+    $mapitems[] = $newitem;
+    if (!$settings['display_together']) {
+      $elements[$delta] = array();
+      $elements[$delta]['#markup'] = theme(
+          'goomap', array(
+            'mapid' => drupal_html_id('goomap-' . $instance['field_name'] . '-' . $instance['field_id'] . '-' . $delta),
+            'settings' => $settings,
+            'items' => array($newitem),
+          )
+      );
+    }
+    
+  }
+  if ($settings['display_together']) {
+    $elements[0] = array(
+      '#markup' => theme(
+          'goomap', array(
+            'mapid' => drupal_html_id('goomap-' . $instance['field_name'] . '-' . $instance['field_id']),
+            'settings' => $settings,
+            'items' => $mapitems,
+          )
+       ),
+    );
+  }
+  return $elements;
+}

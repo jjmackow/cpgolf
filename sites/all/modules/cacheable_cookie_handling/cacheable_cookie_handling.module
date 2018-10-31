@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Provides a framework for setting cookies that works well with page caching.
+ */
+
+/**
+ * Implements hook_library().
+ */
+function cacheable_cookie_handling_library() {
+  $info = system_get_info('module', 'cacheable_cookie_handling');
+  $version = $info['version'];
+
+  // Framework for performing a consolidated Ajax request to ask the server to
+  // set cookies needed by client-side code.
+  $libraries['cacheable_cookie_handling'] = array(
+    'title' => 'Cacheable Cookie Handling',
+    'website' => 'https://www.drupal.org/project/cacheable_cookie_handling',
+    'version' => $version,
+    'js' => array(
+      array(
+        'type' => 'setting',
+        'data' => array(
+          'cacheable_cookie_handling' => array(
+            'cookie_request_url' => url('cacheable-cookie-handling/request-cookies.json'),
+          ),
+        ),
+      ),
+      drupal_get_path('module', 'cacheable_cookie_handling') . '/js/cacheable-cookie-handling.js' => array(),
+    ),
+    'dependencies' => array(
+      array('system', 'jquery.cookie'),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function cacheable_cookie_handling_menu() {
+  $items['cacheable-cookie-handling/request-cookies.json'] = array(
+    'page callback' => 'cacheable_cookie_handling_output_cookies',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Menu callback to set and output via JSON all cookies managed by this module.
+ */
+function cacheable_cookie_handling_output_cookies() {
+  $cookie_values = cacheable_cookie_handling_set_cookies();
+  drupal_json_output($cookie_values);
+}
+
+/**
+ * Sets (and returns) all cookies managed by this module.
+ *
+ * @return array
+ *   An array whose keys are cookie names and values are cookie values
+ *   representing all cookies that were set as a result of this function being
+ *   called.
+ */
+function cacheable_cookie_handling_set_cookies() {
+  $cookie_values = module_invoke_all('cacheable_cookie_handling_set_cookies');
+  foreach ($cookie_values as &$cookie_value) {
+    // If more than one hook implementation sets the same cookie, the last
+    // value set will be used, so reflect that in this function's return value
+    // also.
+    if (is_array($cookie_value)) {
+      $cookie_value = end($cookie_value);
+    }
+  }
+  return $cookie_values;
+}

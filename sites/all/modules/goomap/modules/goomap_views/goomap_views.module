@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Goomap Views module file.
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function goomap_views_views_api() {
+  return array('api' => 3);
+}
+
+/**
+ * Implements drupal_alter() for views_ajax_data.
+ */
+function goomap_views_views_ajax_data_alter(&$commands, $view) {
+  if ($view->plugin_name == 'goomap') {
+    $commands = array();
+    $id = drupal_html_class('goomap-' . $view->name . '-' . $view->current_display);
+    $commands[] = array(
+      'command' => 'goomapDeleteMarkers',
+      'id' => $id,
+    );
+    $commands[] = array(
+      'command' => 'goomapNewMarkers',
+      'id' => $id,
+      'newMarkers' => $view->style_plugin->map_items,
+    );
+    $commands[] = array(
+      'command' => 'goomapCreateMarkers',
+      'id' => $id,
+    );
+    $commands[] = array(
+      'command' => 'goomapZoomAndFit',
+      'id' => $id,
+    );
+  }
+  drupal_alter('goomap_views_ajax_data', $commands, $view, $id);
+}

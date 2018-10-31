@@ -1,0 +1,20 @@
+/**
+ * Place your custom styles here.
+ */
+
+@import "compass/css3";
+@import "compass/utilities";
+@import "compass/css3/transform";
+
+
+// Base-theme overrides.
+@import "partials/variables";
+@import "partials/bg_mixins";
+@import "partials/custom";
+@import "partials/custom_elements";
+@import "partials/responsive";
+@import "partials/print";
+
+body {
+  font-size: 16px;  //recomended by Smashing Magazine;
+}

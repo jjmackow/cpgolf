@@ -1,0 +1,14 @@
+name = Select (or other) taxonomy
+description = "Provides a select box form element for taxonomy_reference fields with additional 'Other' option to allow new terms to be added."
+core = 7.x
+package = Fields
+
+dependencies[] = taxonomy
+dependencies[] = select_or_other
+
+files[] = tests/select_or_other_taxonomy.test
+; Information added by Drupal.org packaging script on 2018-07-25
+version = "7.x-3.0-alpha3"
+core = "7.x"
+project = "select_or_other"
+datestamp = "1532510891"

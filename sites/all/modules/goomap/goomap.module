@@ -1,0 +1,235 @@
+<?php
+
+/**
+ * @file
+ * Main Goomap module file.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function goomap_theme($existing, $type, $theme, $path) {
+  return array(
+    'goomap' => array(
+      'variables' => array(
+        'mapid' => NULL,
+        'settings' => array(),
+        'items' => array(),
+      ),
+    ),
+  );
+}
+/**
+ * Return default options for maps.
+ */
+function goomap_default_options() {
+  global $language;
+  $options = array(
+    'mapHeight' => '400px',
+    'mapWidth' => '100%',
+    'centerMarkers' => 1,
+    'centerZoomLevel' => 0,
+    'mapLanguage' => $language->language,
+    'mapOptionsJson' => '{"zoom":8, "center":{"lat":0, "lng":0}}',
+    'mapStyle' => '',
+    'markerOptionsJson' => '',
+    'infowindowContent' => '',
+    'mapCreate' => true,
+  );
+  drupal_alter('goomap_default_options', $options);
+  return $options;
+}
+
+/**
+ * Settings taken from the default settings form without # elements.
+ */
+function goomap_settings_form_values($form = array()) {
+  $form = goomap_settings_form($form);
+  $children = element_children($form);
+  foreach($form as $key => $value) {
+    if(!in_array($key, $children)){
+      unset($form[$key]);
+    }
+  }
+  return $form;
+}
+
+/**
+ * Default settings form.
+ */
+function goomap_settings_form($form = array(), $default_values = array()) {
+  $defaults = array_merge(goomap_default_options(), $default_values);
+  // TODO: allow for sub level form elements.
+  $form['mapHeight'] = array(
+    '#title' => t('Map Height'),
+    '#type' => 'textfield',
+    '#default_value' => $defaults['mapHeight'],
+    '#required' => TRUE,
+    '#element_validate' => array('_goomap_validate_pixel_value'),
+  );
+  $form['mapWidth'] = array(
+    '#title' => t('Map Width'),
+    '#type' => 'textfield',
+    '#default_value' => $defaults['mapWidth'],
+    '#required' => TRUE,
+    '#element_validate' => array('_goomap_validate_pixel_value'),
+  );
+  $form['centerMarkers'] = array(
+    '#title' => t('Center on markers'),
+    '#type' => 'checkbox',
+    '#default_value' => $defaults['centerMarkers'],
+    '#description' => t('Selecting this will pan and zoom to visible markers. This will override MapOptions.center.'),
+  );
+  $form['centerZoomLevel'] = array(
+    '#title' => t('Maximum zoom when centering on visible markers.'),
+    '#type' => 'select',
+    '#options' => array(),
+    '#default_value' => $defaults['centerZoomLevel'],
+    '#description' => t('Zoom level when centering on visible markers.<br/>
+        0 will zoom as close as possible while still displaying all markers and will respect MapOptions.maxZoom if set.<br/>
+        This settings is useful to stop zooming in too far when only 1 marker is visible.'),
+    '#states' => array(
+      'invisible' => array(
+        ':input[name="fields[field_position][settings_edit_form][settings][centerMarkers]"]' => array('checked' => FALSE),
+      ),
+    ),
+  );
+  for ($i = 0; $i < 20; $i++) {
+    $form['centerZoomLevel']['#options'][] = $i;
+  }
+  $form['mapOptionsJson'] = array(
+    '#title' => t('MapOptions object'),
+    '#type' => 'textarea',
+    '#description' => t('Name and value strings should be enclosed by double quotes. eg {"zoom":8, "center":{"lat":0, "lng":0}}.<br/>
+        This textfield accepts replacement patterns. See the <a href="@link" target="_blank">MapOptions google api</a>', array('@link' => 'https://developers.google.com/maps/documentation/javascript/reference#MapOptions')),
+    '#default_value' => $defaults['mapOptionsJson'],
+    '#required' => TRUE,
+    '#element_validate' => array('_goomap_validate_map_options'),
+  );
+  /*
+  $form['mapStyleFieldset'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Map style'),
+    '#collapsible' => TRUE,
+    '#collapsed' => (strlen($defaults['mapStyle'])) ? FALSE : TRUE,
+  );
+  */
+  $form['mapStyle'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Map style object'),
+    '#description' => t('This is the style array object (that is inserted into MapOptions). You could copy and paste the "Javascript Style Array" from <a href="@link" target="_blank">snazzymaps.com</a>. While this could be inserted directly into the MapOptions object, it is easier to paste it here.', array('@link' => 'https://snazzymaps.com/')),
+    '#default_value' => $defaults['mapStyle'],
+    '#element_validate' => array('_goomap_validate_map_style'),
+  );
+  $form['markerOptionsJson'] = array(
+    '#title' => t('MarkerOptions object'),
+    '#type' => 'textarea',
+    '#description' => t('Name and value strings should be enclosed by double quotes. eg {"clickable" : 1}.<br/>
+        This textfield accepts replacement patterns. See the <a href="@link" target="_blank">MarkerOptions google api</a>', array('@link' => 'https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions')),
+    '#default_value' => $defaults['markerOptionsJson'],
+    '#element_validate' => array('_goomap_validate_marker_options'),
+  );
+  $form['infowindowContent'] = array(
+    '#title' => t('InfoWindow Content'),
+    '#type' => 'textarea',
+    '#description' => t('This is the content of the info windows popup when a marker is clicked.<br/>
+        This textfield accepts replacement patterns.'),
+    '#default_value' => $defaults['infowindowContent'],
+  );
+
+  drupal_alter('goomap_settings_form_alter', $form);
+
+  return $form;
+}
+
+/**
+ * Validate mapOptions input.
+ */
+function _goomap_validate_map_options($element, &$form_state, $form) {
+  //$decoded= json_decode(str_replace(array('[', ']'), array('"', '"'), $element['#value']));
+  // Changed to allow for arrays in json, not sure how it will affect tokens.
+  $decoded= json_decode($element['#value']);
+  if (!$decoded) {
+    form_error($element, t('Invalid mapOptions json'));
+  } elseif (!isset($decoded->zoom)) {
+    form_error($element, t('zoom is required. eg. {"zoom":8, "center":{"lat":0, "lng":0}}'));
+  } elseif (!isset($decoded->center) || !isset($decoded->center->lat) || !isset($decoded->center->lng)) {
+    form_error($element, t('center.lat and center.lng are required. eg. {"zoom":8, "center":{"lat":0, "lng":0}}'));
+  }
+}
+
+/**
+ * Validate mapStyle input.
+ */
+function _goomap_validate_map_style($element, &$form_state, $form) {
+  $decoded= json_decode($element['#value']);
+  if ($element['#value'] && !$decoded) {
+    form_error($element, t('Invalid map style json'));
+  } elseif($element['#value'] && !is_array($decoded)) {
+    form_error($element, t('JSON object for the styles must be an array.'));
+  }
+}
+
+/**
+ * Validate markerOptions input.
+ */
+function _goomap_validate_marker_options($element, &$form_state, $form) {
+  // Changed to allow for arrays in json, not sure how it will affect tokens.
+  $decoded= json_decode($element['#value']);
+  if ($element['#value'] && !$decoded) {
+    form_error($element, t('Invalid markerOptions json'));
+  }
+}
+
+/**
+ * Validate height and width input.
+ */
+function _goomap_validate_pixel_value($element, &$form_state, $form) {
+  if (substr($element['#value'], -2) != 'px' && substr($element['#value'], -1) != '%') {
+    form_error($element, t('Height and width must nd with "px" or "%". eg. 100px or 100%'));
+  }
+}
+
+/**
+ * Goomap theme function.
+ */
+function theme_goomap($vars) {
+  if (isset($vars['mapid'])) {
+    $mapsettings = array_merge(goomap_default_options(), $vars['settings']);
+    // merge the styles onto the mapOptions.
+    if (!empty($mapsettings['mapStyle'])) {
+      $mapOptions = json_decode(filter_xss_admin($mapsettings['mapOptionsJson']));
+      $mapOptions->styles = json_decode(filter_xss_admin($mapsettings['mapStyle']));
+      $mapsettings['mapOptionsJson'] = $mapOptions;
+    } else {
+      $mapsettings['mapOptionsJson'] = json_decode(filter_xss_admin($mapsettings['mapOptionsJson']));
+    }
+
+    // Unset settings that apply to individual items.
+    unset($mapsettings['markerOptionsJson']);
+    unset($mapsettings['infowindowContent']);
+    $mapsettings['items'] = $vars['items'];
+
+    drupal_alter('goomap_map_settings', $mapsettings, $vars['mapid']);
+    //build the google maps api path.
+    $apipath = 'https://maps.googleapis.com/maps/api/js';
+    $query = array();
+    $key = variable_get('google_maps_api_key', false);
+    if($key){
+    	$query['key'] = $key;
+    }
+    if($mapsettings['mapLanguage']){
+    	$query['language'] = $mapsettings['mapLanguage'];
+    }
+    if(isset($vars['async']) && $vars['async']){
+    	$query['callback'] = 'Drupal.attachBehaviors';
+    }
+    drupal_add_js(url($apipath, array('query' => $query)), 'external');
+    drupal_add_js(drupal_get_path('module', 'goomap') . '/goomap.js', array('type'=>'file', 'group' => JS_THEME, 'weight' => 100));
+    drupal_add_js(array('goomap' => array($vars['mapid'] => $mapsettings)), 'setting');
+    return '<div id="' . $vars['mapid'] . '" style="width: ' . $mapsettings['mapWidth'] . '; height: ' . $mapsettings['mapHeight'] . '"></div>';
+  } else {
+    watchdog('goomap', 'Map id not sent to goomap theme function', array(), WATCHDOG_ERROR);
+    return '';
+  }
+}

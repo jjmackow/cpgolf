@@ -1,0 +1,135 @@
+<?php
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function phone_link_field_formatter_info() {
+  return array(
+    'phone_link' => array(
+      'label'       => t('Phone link'),
+      'field types' => array('text'),
+      'settings'    => array(
+        'title' => t('Call to @phone'),
+        'text'  => '',
+        'type'  => 'tel',
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function phone_link_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display  = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  $element['title'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Title tip'),
+    '#description'   => t('Provide "title" HTML-attribute for phone link. You can use "@phone" replacement (without quotes).'),
+    '#default_value' => $settings['title'],
+  );
+
+  $element['text'] = array(
+    '#type'          => 'textfield',
+    '#title'         => t('Replace phone number'),
+    '#description'   => t('Text displayed instead of phone. You can use "@phone" replacement (without quotes).'),
+    '#default_value' => $settings['text'],
+  );
+
+  $element['type'] = array(
+    '#type'          => 'select',
+    '#options'       => _phone_link_get_phone_types(),
+    '#title'         => t('Type of link'),
+    '#description'   => t('Choose the type of phone link. Default phones: "tel:", or Skype-format "callto:".'),
+    '#default_value' => $settings['type'] ?: 'tel',
+  );
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function phone_link_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display  = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+
+  if (!empty($settings['title'])) {
+    $summary[] = t('Title attribute: @title', array('@title' => $settings['title']));
+  }
+  else {
+    $summary[] = t('No title attribute.');
+  }
+
+  if (!empty($settings['text'])) {
+    $summary[] = t('Text: @text', array('@text' => $settings['text']));
+  }
+  else {
+    $summary[] = t('No text replacement.');
+  }
+
+  if (!empty($settings['type'])) {
+    $types     = _phone_link_get_phone_types();
+    $summary[] = t('Phone link type: @type', ['@type' => $types[$settings['type']]]);
+  }
+
+  return implode('<br />', $summary);
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function phone_link_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $elements = array();
+  $settings = $display['settings'];
+
+  foreach ($items as $delta => $item) {
+    $elements[$delta]['#markup'] = phone_link_view($item, $settings);
+  }
+
+  return $elements;
+}
+
+/**
+ * Replace phone number with link
+ *
+ * @param $item
+ *
+ * @return string
+ */
+function phone_link_view($item, $settings) {
+  $phone = $item['value'];
+
+  // Get formatter settings
+  $link_title = $settings['title'] ? format_string($settings['title'], array('@phone' => $phone)) : '';
+  $link_text  = $settings['text'] ? format_string($settings['text'], array('@phone' => $phone)) : $phone;
+  $link_type  = $settings['type'] ?: 'tel';
+
+  // Remove all non-phone symbols
+  $clean_phone = preg_replace('/[^\d+]/', '', $phone);
+
+  // Add link options
+  $options = array(
+    'external'   => TRUE,
+    'attributes' => array(
+      'title' => $link_title,
+      'class' => array('phone-link'),
+    ),
+  );
+
+  return l($link_text, "$link_type:" . substr($clean_phone, 0, 13), $options);
+}
+
+/**
+ * Get phone link types.
+ *
+ * @return array
+ */
+function _phone_link_get_phone_types() {
+  return array(
+    'tel'    => t('Default phones'),
+    'callto' => t('Skype format'),
+  );
+}

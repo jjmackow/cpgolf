@@ -1,0 +1,51 @@
+/*custom block constructs*/
+.page-a-day{
+  $pad-padding = 3px;
+  display: inline-block;
+  position: relative;
+  width: 4em;
+  height: 4em;
+  
+  border: 1px solid black;
+  background: red;  
+  color: white;      //sets the colors for the pad
+  
+  padding: $pad-padding;
+  b{
+    display: block;
+    font-size: .5em;
+    line-height: 1em;
+    &:nth-of-type(1) {
+      text-align: center;
+      font-size: 1.5em;
+      background: rgba(255, 255, 255, 0.3);
+      margin: auto calc(-$pad-padding);
+    }
+    .&:nth-of-type(2) {
+      font-size: 0.33em;
+    }
+    &:nth-of-type(3) {
+      font-size: 1.75em;
+      text-align: right;
+    }
+    &:nth-of-type(4) {    
+      font-size: 0.33em;
+      @include translateY(-2.5rem);
+    }
+    &:nth-of-type(5) {
+      font-size: 1em;
+    }
+    &:nth-of-type(6) {
+      font-size: 1em;
+    }
+  }
+}
+.bg-white{
+  background: rgba(255, 255, 255, 1);
+}
+.bg-light{
+  background: rgba(255, 255, 128, 0.3);
+}
+.bg-dark{
+  background: rgba(0, 0, 0, 0.3);
+}

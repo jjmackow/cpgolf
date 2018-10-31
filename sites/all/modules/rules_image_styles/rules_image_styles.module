@@ -1,0 +1,15 @@
+<?php
+
+/*
+ * we need the node id and the image_field to generate the presets for and we need the presets to use
+ *
+ *we do not need the field because we want to generate all checked presets for the node so we use all IMAGE fields
+ *
+ */
+
+
+ /**
+  * @file
+  * Necessary file for declaring the Rules examples module. See
+  * rules_example.rules.inc for the actual rules plugins.
+  */

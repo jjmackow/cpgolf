@@ -1,0 +1,12 @@
+name = Body Classes
+description = Add contextual CSS classes to the body of the page.
+core = 7.x
+
+configure = admin/config/content/bodyclasses
+
+; Information added by Drupal.org packaging script on 2016-09-27
+version = "7.x-1.1"
+core = "7.x"
+project = "bodyclasses"
+datestamp = "1474994579"
+

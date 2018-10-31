@@ -1,0 +1,15 @@
+// Image width, image is relative to Drupal root.
+.image-width-class {
+  width: image-width('misc/druplicon.png');
+}
+
+// Image height, image is relative to Drupal root.
+.image-height-class {
+  height: image-height('misc/druplicon.png');
+}
+
+// Image width and height, image is relative to this file.
+.image-rel-height-width-class {
+  width: image-width('images/druplicon.png');
+  height: image-height('images/druplicon.png');
+}

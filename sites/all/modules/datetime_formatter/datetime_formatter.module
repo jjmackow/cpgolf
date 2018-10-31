@@ -1,0 +1,667 @@
+<?php
+/**
+ * @file
+ *  Main functions for Datetime formatter module.
+ */
+
+// Include moment related hooks, etc.
+module_load_include('inc', 'datetime_formatter', 'includes/moment');
+
+/**
+ * Implements hook_menu()
+ */
+function datetime_formatter_menu() {
+  $items['admin/config/regional/datetime-formatter'] = array(
+    'title' => 'Datetime formatter settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('variable_module_form', 'datetime_formatter'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function datetime_formatter_field_formatter_info() {
+  $default_settings = array('local_time' => 0);
+  $info = array(
+    'datetime_formatter_date_range' => array(
+      'label' => t('Datetime'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+      'settings' => array_merge($default_settings, datetime_formatter_get_default_display_formats('datetime_formatter_date_range')),
+    ),
+    'datetime_formatter_time_range' => array(
+      'label' => t('Datetime - time only'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+      'settings' => array_merge($default_settings, datetime_formatter_get_default_display_formats('datetime_formatter_time_range')),
+    ),
+    'datetime_formatter_time_duration' => array(
+      'label' => t('Datetime - duration'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+      'settings' => datetime_formatter_get_default_display_formats('datetime_formatter_time_duration'),
+    ),
+    'datetime_formatter_relative_time' => array(
+      'label' => t('Datetime - relative time'),
+      'field types' => array('date', 'datestamp', 'datetime'),
+      'settings' => datetime_formatter_get_default_display_formats('datetime_formatter_relative_time'),
+    ),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function datetime_formatter_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $element = array();
+
+  switch ($display['type']) {
+    case 'datetime_formatter_date_range':
+      $element['single_day'] = array(
+        '#title' => t('Display format for dates spanning one day.'),
+        '#type' => 'select',
+        '#default_value' => $settings['single_day'],
+        '#options' => datetime_formatter_get_available_date_formats(),
+      );
+      $element['several_days'] = array(
+        '#title' => t('Display format for dates spanning several days.'),
+        '#type' => 'select',
+        '#default_value' => $settings['several_days'],
+        '#options' => datetime_formatter_get_available_date_formats(TRUE),
+      );
+      $element['several_months'] = array(
+        '#title' => t('Display format for dates spanning several months.'),
+        '#type' => 'select',
+        '#default_value' => $settings['several_months'],
+        '#options' => datetime_formatter_get_available_date_formats(TRUE),
+      );
+      $element['several_years'] = array(
+        '#title' => t('Display format for dates spanning several years.'),
+        '#type' => 'select',
+        '#default_value' => $settings['several_years'],
+        '#options' => datetime_formatter_get_available_date_formats(TRUE),
+      );
+      $element['help'] = array(
+        '#type' => 'markup',
+        '#markup' => t('Custom date format. See the <a href="@url">PHP manual</a> for available options.', array('@url' => 'http://php.net/manual/function.date.php')) .
+          '<br />' . t('Letters in braces mark end date elements, for example, {d} means the day of the end date.'),
+      );
+      $element['local_time'] = array(
+        '#title' => t('Rewrite with client-side local time'),
+        '#type' => 'checkbox',
+        '#default_value' => $settings['local_time'],
+      );
+      break;
+
+    case 'datetime_formatter_time_range':
+      $element['single'] = array(
+        '#title' => t('Display format for single time.'),
+        '#type' => 'select',
+        '#default_value' => $settings['single'],
+        '#options' => datetime_formatter_get_available_date_formats(),
+      );
+      $element['multi'] = array(
+        '#title' => t('Display format for multiple times.'),
+        '#type' => 'select',
+        '#default_value' => $settings['multi'],
+        '#options' => datetime_formatter_get_available_date_formats(TRUE),
+      );
+      $element['local_time'] = array(
+        '#title' => t('Rewrite with client-side local time'),
+        '#type' => 'checkbox',
+        '#default_value' => $settings['local_time'],
+      );
+
+      break;
+
+    case 'datetime_formatter_time_duration':
+      $element['single_day'] = array(
+        '#title' => t('Display format for single day.'),
+        '#type' => 'select',
+        '#default_value' => $settings['single_day'],
+        '#options' => datetime_formatter_get_available_date_formats(TRUE),
+      );
+      $element['several_days'] = array(
+        '#title' => t('Display format for several days.'),
+        '#type' => 'select',
+        '#default_value' => $settings['several_days'],
+        '#options' => datetime_formatter_get_available_date_formats(TRUE),
+      );
+
+      break;
+
+    case 'datetime_formatter_relative_time':
+      $element['default'] = array(
+        '#title' => t('Default format.'),
+        '#type' => 'select',
+        '#default_value' => $settings['default'],
+        '#options' => datetime_formatter_get_available_date_formats(),
+      );
+
+      break;
+  }
+
+  return $element;
+}
+
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function datetime_formatter_field_formatter_settings_summary($field, $instance, $view_mode) {
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $summary = array();
+
+  switch ($display['type']) {
+    case 'datetime_formatter_date_range':
+      $summary[] = t('Display date range using formats: @single_day, @several_days, @several_months, @several_years',
+        array(
+          '@single_day' => $settings['single_day'],
+          '@several_days' => $settings['several_days'],
+          '@several_months' => $settings['several_months'],
+          '@several_years' => $settings['several_years'],
+        )
+      );
+      break;
+
+    case 'datetime_formatter_time_range':
+      $summary[] = t('Display time range using format: @single, @multi',
+        array(
+          '@single' => $settings['single'],
+          '@multi' => $settings['multi'],
+        )
+      );
+      break;
+
+    case 'datetime_formatter_time_duration':
+      $summary[] = t('Display time duration using format: @single_day, @several_days',
+        array(
+          '@single_day' => $settings['single_day'],
+          '@several_days' => $settings['several_days'],
+        )
+      );
+      break;
+
+    case 'datetime_formatter_relative_time':
+      $summary[] = t('Display relative time, but default to @default',
+        array(
+          '@default' => $settings['default'],
+        )
+      );
+      break;
+  }
+
+  return implode('<br />', $summary);
+}
+
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function datetime_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+
+  // Allow other modules to alter display settings.
+  drupal_alter('datetime_formatter_settings', $display, $entity, $entity_type);
+
+  switch ($display['type']) {
+    case 'datetime_formatter_date_range':
+      foreach ($items as $delta => $item) {
+        $settings = $display['settings'];
+        $dates = date_formatter_process('format_interval', $entity_type, $entity, $field, $instance, $langcode, $item, $display);
+        $timezone = $dates['value']['db']['object']->getTimezone()->getName();
+        $start_date = strtotime($dates['value']['formatted_iso']);
+        $end_date = strtotime($dates['value2']['formatted_iso']);
+        $result = _datetime_formatter_render_date_range($start_date, $end_date, $settings, $timezone, $langcode);
+
+        $element[$delta] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'span',
+          '#value' => $result['value'],
+        );
+
+        if (!empty($settings['local_time'])) {
+          $element[$delta] = array_merge(
+            $element[$delta],
+            array(
+              '#attributes' => array(
+                'data-rewrite-datetime' => 'date',
+                'data-start-date' => $start_date,
+                'data-end-date' => $end_date,
+                'data-format' => datetime_formatter_php_to_moment_format($result['format']),
+                'data-original-timezone' => $timezone,
+              ),
+              '#attached' => array(
+                'libraries_load' => array(
+                  array('moment-timezone', 'with-data-2010-2020.min'),
+                )
+              )
+            )
+          );
+        }
+      }
+      break;
+
+    case 'datetime_formatter_time_range':
+      foreach ($items as $delta => $item) {
+        $settings = $display['settings'];
+        $dates = date_formatter_process('format_interval', $entity_type, $entity, $field, $instance, $langcode, $item, $display);
+        $timezone = $dates['value']['db']['object']->getTimezone()->getName();
+        $start_time = strtotime($dates['value']['formatted_iso']);
+        $end_time = strtotime($dates['value2']['formatted_iso']);
+        $result = _datetime_formatter_render_time_range($start_time, $end_time, $settings, $timezone, $langcode);
+
+        $element[$delta] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'span',
+          '#value' => $result['value'],
+        );
+
+        if (!empty($settings['local_time'])) {
+          $element[$delta] = array_merge(
+            $element[$delta],
+            array(
+              '#attributes' => array(
+                'data-rewrite-datetime' => 'time',
+                'data-start-time' => $start_time,
+                'data-end-time' => $end_time,
+                'data-format' => datetime_formatter_php_to_moment_format($result['format']),
+                'data-original-timezone' => $timezone,
+              ),
+              '#attached' => array(
+                'libraries_load' => array(
+                  array('moment-timezone', 'with-data-2010-2020.min'),
+                )
+              )
+            )
+          );
+        }
+
+        }
+      break;
+
+    case 'datetime_formatter_time_duration':
+      foreach ($items as $delta => $item) {
+        $settings = $display['settings'];
+        $dates = date_formatter_process('format_interval', $entity_type, $entity, $field, $instance, $langcode, $item, $display);
+        $timezone = $dates['value']['db']['object']->getTimezone()->getName();
+        $start_time = strtotime($dates['value']['formatted_iso']);
+        $end_time = strtotime($dates['value2']['formatted_iso']);
+        $result = _datetime_formatter_render_time_duration($start_time, $end_time, $settings, $timezone, $langcode);
+
+        $element[$delta] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'span',
+          '#value' => $result['value'],
+        );
+      }
+      break;
+
+    case 'datetime_formatter_relative_time':
+      foreach ($items as $delta => $item) {
+        $settings = $display['settings'];
+        $dates = date_formatter_process('format_interval', $entity_type, $entity, $field, $instance, $langcode, $item, $display);
+        $timezone = $dates['value']['db']['object']->getTimezone()->getName();
+        $start_date = strtotime($dates['value']['formatted_iso']);
+        $result = _datetime_formatter_render_relative_time($start_date, $settings, $timezone, $langcode);
+
+        $element[$delta] = array(
+          '#type' => 'html_tag',
+          '#tag' => 'time',
+          '#value' => $result['value'],
+          '#attributes' => array(
+            'class' => array(
+              'timeago',
+            ),
+            'datetime' => format_date($start_date, 'custom', 'c'),
+          ),
+          '#attached' => _datetime_formatter_timeago_get_js(),
+        );
+      }
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * Retrieve an array of date format types for use as an options list.
+ *
+ * @param $multi
+ *   A boolean to filter out single day formats.
+ *
+ * @return array
+ *   Associative array of available date formats.
+ */
+function datetime_formatter_get_available_date_formats($multi = FALSE) {
+  $options = array();
+  $date_formats = system_get_date_types();
+
+  if (!empty($date_formats)) {
+    foreach ($date_formats as $type => $type_info) {
+      $format = date_format_type_format($type);
+
+      // Check if we are filtering to date formats spanning several days/months or years.
+      if ($multi && (strpos($format, '{') === FALSE || strpos($format, '}') === FALSE)) {
+        continue;
+      }
+
+      $options[$type] = $type_info['title'] . ' (' . date_format_date(date_example_date(), $type) . ')';
+    }
+  }
+
+  return $options;
+}
+
+/**
+ * Retrieve an array of default display formats.
+ *
+ * @param $type
+ *   The type of datetime_formatter to retrieve the display formats for.
+ *
+ * @return array
+ *   Associative array of default display formats.
+ */
+function datetime_formatter_get_default_display_formats($type) {
+  $display_formats = array();
+
+  switch ($type) {
+    case 'datetime_formatter_date_range':
+      $display_formats = array(
+        'single_day' => 'datetime_formatter_date_single_day',
+        'several_days' => 'datetime_formatter_date_several_days',
+        'several_months' => 'datetime_formatter_date_several_months',
+        'several_years' => 'datetime_formatter_date_several_years',
+      );
+      break;
+    case 'datetime_formatter_time_range':
+      $display_formats = array(
+        'single' => 'datetime_formatter_time_single',
+        'multi' => 'datetime_formatter_time_multi',
+      );
+      break;
+    case 'datetime_formatter_time_duration':
+      $display_formats = array(
+        'single_day' => 'datetime_formatter_duration_single_day',
+        'several_days' => 'datetime_formatter_duration_several_days',
+      );
+      break;
+    case 'datetime_formatter_relative_time':
+      $display_formats = array(
+        'default' => 'datetime_formatter_relative_time_default',
+      );
+      break;
+  }
+
+  return $display_formats;
+}
+
+/**
+ * Helper function to add the timeago js and settings.
+ *
+ * @return array
+ *  Attached render array.
+ */
+function _datetime_formatter_timeago_get_js() {
+  $attached = array();
+
+  // Add timeago JS.
+  $attached['js'][] = drupal_get_path('module', 'datetime_formatter') . '/js/jquery.timeago.js';
+  $attached['js'][] = drupal_get_path('module', 'datetime_formatter') . '/js/timeago.js';
+
+  // Add timeago settings.
+  $attached['js'][] = array(
+    'type' => 'setting',
+    'data' => array(
+      'datetimeFormatter' => array(
+        'timeago' => _datetime_formatter_timeago_get_settings()
+      )
+    ),
+  );
+
+  return $attached;
+}
+
+/**
+ * Helper function to create our timeago js settings.
+ *
+ * @return array
+ *  Array of settings.
+ */
+function _datetime_formatter_timeago_get_settings() {
+  module_load_include('inc', 'variable', 'variable');
+
+  $language = i18n_language_context()->language;
+
+  $settings = array(
+    'refreshMillis' => (int) variable_get_value('datetime_formatter_timeago_refresh_millis'),
+    'allowFuture' => true,
+    'cutoff' => (int) variable_get_value('datetime_formatter_timeago_cutoff'),
+  );
+
+  $settings['strings'] = array();
+  $settings_strings = variable_list_group('datetime_formatter_timeago_js_strings');
+  foreach ($settings_strings as $variable_name => $variable) {
+    $value = i18n_variable_get($variable_name, $language, NULL);
+
+    if (is_null($value)) {
+      $value = variable_get_value($variable_name);
+    }
+
+    $pieces = explode('datetime_formatter_timeago_', $variable_name);
+    if (count($pieces) === 2) {
+      $settings['strings'][$pieces[1]] = check_plain($value);
+    }
+  }
+
+  return $settings;
+}
+
+/**
+ * Returns date range for a given datetime.
+ *
+ * @param $start_date
+ *   Unix timestamp.
+ * @param $end_date
+ *   Unix timestamp.
+ * @param $display_formats
+ *   Array of display formats.
+ *   Defaults to default formats (see datetime_formatter_get_default_display_formats)
+ * @param $timezone
+ *   A string representing the timezone. Defaults to local timezone.
+ * @param $langcode
+ *   An iso language code, defaults to the language of the page.
+ *
+ * @return array
+ *   value => String with a formatted datetime range.
+ *   format => String with PHP date format.
+ */
+function _datetime_formatter_render_date_range($start_date, $end_date, $display_formats = NULL, $timezone = NULL, $langcode  = NULL) {
+  $start_date_object = new DateObject($start_date, $timezone);
+  $end_date_object = new DateObject($end_date, $timezone);
+  $diff = $start_date_object->diff($end_date_object);
+
+  // Use default formats if not provided as argument.
+  if (!isset($display_formats)) {
+    $display_formats = datetime_formatter_get_default_display_formats('datetime_formatter_date_range');
+  }
+
+  // Dates span several years.
+  if ($start_date_object->format('Y') != $end_date_object->format('Y')) {
+    $format = date_format_type_format($display_formats['several_years'], $langcode);
+  }
+  // Dates span several months.
+  elseif ($start_date_object->format('n') != $end_date_object->format('n')) {
+    $format = date_format_type_format($display_formats['several_months'], $langcode);
+  }
+  // Dates span several days.
+  elseif ($diff->days > 0) {
+    $format = date_format_type_format($display_formats['several_days'], $langcode);
+  }
+  else {
+    $format = date_format_type_format($display_formats['single_day'], $langcode);
+  }
+
+  // Parse our start date.
+  $result = format_date($start_date, 'custom', preg_replace('/\{([a-zA-Z])\}/', '{\\\$1}', $format), $timezone);
+
+  // Parse our end date.
+  $matches = array();
+  if (preg_match_all('/\{([a-zA-Z])\}/', $result, $matches)) {
+    foreach ($matches[1] as $match) {
+      $result = preg_replace('/\{' . $match . '\}/', format_date($end_date, 'custom', $match, $timezone), $result);
+    }
+  }
+
+  return array(
+    'value' => $result,
+    'format' => $format,
+  );
+}
+
+/**
+ * Returns time range for a given datetime.
+ *
+ * @param $start_time
+ *   Unix timestamp.
+ * @param $end_time
+ *   Unix timestamp.
+ * @param $display_formats
+ *   Array of display formats.
+ *   Defaults to default formats (see datetime_formatter_get_default_display_formats)
+ * @param $timezone
+ *   A string representing the timezone. Defaults to local timezone.
+ * @param $langcode
+ *   An iso language code, defaults to the language of the page.
+ *
+ * @return array
+ *   value => String with a formatted time range.
+ *   format => String with PHP date/time format.
+ */
+function _datetime_formatter_render_time_range($start_time, $end_time, $display_formats = NULL, $timezone = NULL, $langcode = NULL) {
+  // Use default formats if not provided as argument.
+  if (!isset($display_formats)) {
+    $display_formats = datetime_formatter_get_default_display_formats('datetime_formatter_time_range');
+  }
+
+  // Times are not identical
+  if (date('Gis', $start_time) != date('Gis', $end_time)) {
+    $format = date_format_type_format($display_formats['multi'], $langcode);
+  }
+  // Single time.
+  else {
+    $format = date_format_type_format($display_formats['single'], $langcode);
+  }
+
+  // Parse our start date.
+  $result = format_date($start_time, 'custom', preg_replace('/\{([a-zA-Z])\}/', '{\\\$1}', $format), $timezone, $langcode);
+
+  // Parse our end date.
+  $matches = array();
+  if (preg_match_all('/\{([a-zA-Z])\}/', $result, $matches)) {
+    foreach ($matches[1] as $match) {
+      $result = preg_replace('/\{' . $match . '\}/', format_date($end_time, 'custom', $match, $timezone, $langcode), $result);
+    }
+  }
+
+  return array(
+    'value' => $result,
+    'format' => $format,
+  );
+}
+
+/**
+ * Returns time range for a given datetime.
+ *
+ * @param $start_time
+ *   Unix timestamp.
+ * @param $end_time
+ *   Unix timestamp.
+ * @param $display_formats
+ *   Array of display formats.
+ *   Defaults to default formats (see datetime_formatter_get_default_display_formats)
+ * @param $timezone
+ *   A string representing the timezone. Defaults to local timezone.
+ * @param $langcode
+ *   An iso language code, defaults to the language of the page.
+ *
+ * @return array
+ *   value => String with a formatted time range.
+ *   format => String with PHP date/time format.
+ */
+function _datetime_formatter_render_time_duration($start_time, $end_time, $display_formats, $timezone = NULL, $langcode = NULL) {
+  $start_time_object = new DateObject($start_time, $timezone);
+  $end_time_object = new DateObject($end_time, $timezone);
+  $diff = $start_time_object->diff($end_time_object);
+
+  // Use default formats if not provided as argument.
+  if (!isset($display_formats)) {
+    $display_formats = datetime_formatter_get_default_display_formats('datetime_formatter_time_duration');
+  }
+
+  // Single date.
+  $format = date_format_type_format($display_formats['single_day'], $langcode);
+  // Dates span several days.
+  if ($diff->days > 0) {
+    $format = date_format_type_format($display_formats['several_days'], $langcode);
+  }
+
+  // Parse our duration.
+  $result = $diff->format(preg_replace('/\{([a-zA-Z])\}/', '{\\\$1}', $format));
+
+  // Translate any strings.
+  $matches = array();
+  if (preg_match_all('/\{([a-zA-Z])\}/', $result, $matches)) {
+    foreach ($matches[1] as $match) {
+      $result = preg_replace('/\{' . $match . '\}/', t($match));
+    }
+  }
+
+  return array(
+    'value' => $result,
+    'format' => $format,
+  );
+}
+
+/**
+ * Returns relative time for a given datetime.
+ *
+ * @param $start_date
+ *   Unix timestamp.
+ * @param $display_formats
+ *   Array of display formats.
+ *   Defaults to default formats (see datetime_formatter_get_default_display_formats)
+ * @param $timezone
+ *   A string representing the timezone. Defaults to local timezone.
+ * @param @langcode
+ *   An iso language code, defaults to the language of the page.
+ *
+ * @return array
+ *   value => String with a formatted time range.
+ *   format => String with PHP date/time format.
+ */
+function _datetime_formatter_render_relative_time($start_date, $display_formats, $timezone = NULL, $langcode = NULL) {
+  $start_date_object = new DateObject($start_date, $timezone);
+
+  // Use default formats if not provided as argument.
+  if (!isset($display_formats)) {
+    $display_formats = datetime_formatter_get_default_display_formats('datetime_formatter_relative_time');
+  }
+
+  // Default.
+  $format = date_format_type_format($display_formats['default'], $langcode);
+
+  $result = $start_date_object->format($format);
+
+  return array(
+    'value' => $result,
+    'format' => $format,
+  );
+}

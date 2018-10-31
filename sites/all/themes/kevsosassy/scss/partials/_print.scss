@@ -1,0 +1,604 @@
+@font-face {
+  font-family: 'XLines';
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  src: url('/sites/all/libraries/mpdf/ttfonts/XLines.ttf'); 
+}
+
+@font-face {
+  font-family: 'Danube';
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  src: url('/sites/all/libraries/dompdf/Danube.ttf'); 
+}
+@font-face {
+  font-family: 'Xenotron';
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  src: url('/sites/all/libraries/dompdf/Xenotron.ttf'); 
+}
+@font-face {
+  font-family: 'X-files';
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  src: url('/sites/all/libraries/dompdf/Xenotron.ttf'); 
+}
+@font-face {
+  font-family: 'Xephyr-Expanded';
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  src: url('/sites/all/libraries/dompdf/Xephyr-Expanded.ttf');
+}
+
+$menu-section-heading = "Danube";
+$menu-section-heading-size = .2in;
+$menu-section-heading-size-fat =.3in;
+$menu-section-heading-color = #e9430c;
+
+$menu-section-font-size = .23in;
+$menu-section-line-height = .22in;
+$menu-item-subfont-size = .16in;
+
+$brochureTitleh1_font ="Xenotron";
+$brochureTitleh1_size = .32in;
+$brochureTitleh1_color = #ffffbb;
+
+$brochureTitleh2_font = "Xenotron";
+$brochureTitleh2_size= .2in;
+$brochureTitleh2_color = #f8d23d;
+
+$brochureTitleh3_font = "X-files";
+$brochureTitleh3_size = .155in;
+$brochureTitleh3_color = #da7010;
+
+.node-menu.view-mode-full{
+  position: relative;
+}
+
+#block-system-main{
+  position: relative;
+}
+.perfprint_page{
+  .col-sm-1,
+  .col-sm-2,
+  .col-sm-3,
+  .col-sm-4,
+  .col-sm-5,
+  .col-sm-6,
+  .col-sm-7,
+  .col-sm-8,
+  .col-sm-9,
+  .col-sm-10,
+  .col-sm-11,
+  .col-sm-12{
+    float: none;
+    clear: both;
+    padding-left: 0;
+    padding-right: 0;
+    .row{
+      margin: 0px;      
+    }
+  }
+  .hours{
+    .field-items{
+      font-size: 3em;
+      color: black;
+    }
+    .field-label{
+      font-size: 6em;
+      color: Maroon;
+    }
+    .oh-display{
+      white-space: normal;
+      display: inline;
+    }
+  }
+
+  h3{
+    
+    font-size: 5em;
+    margin: 1em!important;
+  }
+}
+.node-brochure-content{
+
+}
+.legacy_folio.print-4-col{
+  .col-sm-1,
+  .col-sm-2,
+  .col-sm-3,
+  .col-sm-4,
+  .col-sm-5,
+  .col-sm-6,
+  .col-sm-7,
+  .col-sm-8,
+  .col-sm-9,
+  .col-sm-10,
+  .col-sm-11,
+  .col-sm-12{
+    /** dompdf .8 has limitted support for float ...
+    we are disabling it totally here. **/
+    float: none;
+    clear: both;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  height: 11in;
+  padding: .175in;
+  width: 4.25in;
+  font-size: $menu-section-font-size;
+  line-height: $menu-section-line-height;
+  em{
+    font-weight: normal;
+    color: #d3844c;
+    font-size: .2in;
+    line-height: .22in;
+  }
+  &.group-first{
+    left: 0in;    
+    width: 4.25in;
+    
+    
+    >.field, >div h2{
+      padding-right: .375in;
+      margin-left: .25in;
+    }
+  }
+  &.group-second{
+    h1{
+      padding-top: .075in;
+      font-family: $brochureTitleh1_font!important;
+      font-size: $brochureTitleh1_size!important;
+      color: $brochureTitleh1_color!important;
+      text-align: center;
+    }   
+
+    h2{
+      font-family: $brochureTitleh2_font;
+      font-size: $brochureTitleh2_size;
+      color: $brochureTitleh2_color!important;
+      text-align: center;
+    }
+    h3{
+      top: 3in;
+      left: 3.5in;
+      font-family: $brochureTitleh3_font;
+      font-size: .21in;
+      color: $brochureTitleh3_color!important;
+      margin: 0in .5in 0in .5in!important;      
+      text-align: right;
+    }
+    
+    
+    &.double-wide-center{
+      width: 8.5in;
+      padding-left: 0in;
+      padding-rigth: .5in;
+      .node-menu-section{
+        &.split-column{
+          margin-left: .25in;
+          width: 7.5in;
+          h3{
+            margin-top: 0in;
+            font-size: .35in;
+            liine-height: .25in;
+          }
+        }
+      }
+      .node-brochure-content{
+        padding-left: .75in;
+        width: 6in;
+        text-align: center;
+      }
+    }
+    .node-menu-section{
+      padding-right: .5in;
+    }
+    left: 4.25in;
+    background-color: black;  
+    >.field, >div h2{
+      margin-left: .25in;
+    }
+  }
+  .field-name-body.small{
+    font-size: .13in;
+    color: #c8c8c8;
+    font-style: italic;
+    font-weight: 100;
+  }
+  &.gGGGGroup-second{
+    
+    left: 4.25in;
+    
+    width: 8.5in;
+    
+    h1{
+      padding-top: .075in;
+      font-family: $brochureTitleh1_font!important;
+      font-size: $brochureTitleh1_size!important;
+      color: $brochureTitleh1_color;
+      text-align: center;
+    }
+    h2{
+      font-family: $brochureTitleh2_font;
+      font-size: $brochureTitleh2_size;
+      color: $brochureTitleh2_color;
+      text-align: center;
+    }
+    h3{
+      top: 3in;
+      left: 3.5in;
+      font-family: $brochureTitleh3_font;
+      font-size: .21in;
+      color: $brochureTitleh3_color;
+      margin: 0in .5in 0in .5in!important;      
+      text-align: right;
+    }
+  }
+  &.group-third{
+    .row{
+      margin-left:0in;
+      margin-right:.125in;
+    }
+    left: 8.5in;
+
+    &.double-wide-center{    
+      display: none;
+      width: 0in;
+      padding: 0in;
+    }
+  }
+  &.group-fourth{
+    left: 12.75in;
+    
+    width: 4.25in;
+    
+    background-color: black;
+    
+    
+    >.field, >div h2{
+      padding: 0 .5in 0 0;
+    }
+  }
+  .field-name-field-image{
+    img{
+      width: auto;
+    }    
+  }
+  &.group-second.centeccred{
+    width: 8.5in;
+    background-size: cover;
+    
+  }
+  &.group-third.cccentered{
+    width: 0in;
+    display: none;
+  }
+  position: absolute;
+  top: 0in;
+  .pageinfo{
+    .qr{
+      
+    }
+    .nodeurl{
+      white-space: nowrap;
+      font-size: .1in;
+    }
+  }
+  .field-item{
+    margin-bottom:.075in;
+    &.odd{
+      margin-left: .0075in;
+    }
+    &.even{
+      margin-left: .01in;      
+    }
+  }
+
+  /*this is a landscaped letter
+  sized page, with 4 columns */
+
+  
+  
+  color: black;
+  text-outline-width: 27px;
+  text-outline-color: black;  
+  line-height: .15in;
+
+  h4{
+    color: navy;
+  }
+  .pricing-list{
+      margin-top: .075in;
+      line-height: $menu-section-line-height;
+  }
+  .node-menu-item{
+    .field-name-field-body{
+      color: purple;
+    }
+  }
+  .currency{
+    padding-left: .05in;
+    margin-right: .05in;
+    color: #0d0d7b;
+  }
+  .node-menu-item-price{
+    color: #770000;
+    >*.item-description{    
+     font-weight: normal;
+     font-size: .16in;
+    }
+  }
+  section.block-blockify{
+    float: none!important;
+  }
+}
+
+.node-menu-section h3{
+  font-family: $menu-section-heading;
+  font-size: $menu-section-heading-size;
+  color: $menu-section-heading-color;
+  font-variant: small-caps;
+  margin: 0.075in 0 .07in .25in;
+  padding: 0 .5in;
+  text-align: right;
+  border-bottom: 1px solid gray;  
+}
+
+.contextual-links-wrapper{
+  display: none;
+}
+.node-menu-item{
+font-size: $menu-item-subfont-size;
+  strong{
+    font-weight: bold;
+  }
+  
+  .field-name-field-body{
+    display: inline-block;
+    margin-right: .125in;
+  }
+  .blocks{;
+    .node-menu-item-price{
+      white-space: nowrap;            
+      width: 1.1in;
+      height: .2in;            
+    }
+  }
+  .list{
+    margin-left: .1in;
+    .node-menu-item-price{
+      display: block;      
+
+      b{        
+        &.headline{          
+          font-weight: 800;
+          text-transform: capitalize;
+          font-stretch: extra-expanded;
+        }
+      }
+      .currency{
+        padding-left: .0125in;
+      }
+    }
+  }
+  .append{
+    float: right;
+    width: .75in; 
+    .node-menu-item-price{
+      float: right;
+      width: .75in; 
+      white-space: nowrap;            
+      margin-left: .15in;
+    }
+  }
+}
+
+/*simplenews pdf printing*/
+.node-blog.view-mode-print{
+  background: none;
+  color: black;
+  width: 7.5in;
+  padding: .5in;
+  .col-sm-12 {
+    width: 7.0in;
+  }
+  h1{
+    margin-top: .5in;
+    font-size: .25in;
+  }
+  blockquote{
+    font-size: .15in;
+    color: #00509f;
+  }
+  .story-image{    
+    padding: .125in .125in 0 0;
+    float: left;
+    clear: none;
+    display: block;
+  }
+
+  .full-story{
+    
+  }
+}
+.node-simplenews.view-mode-print{
+  width: 8.5in;
+  margin: 0in;
+  background: #cee7ff;
+  .field-name-logo{
+    float: right;
+    margin-right: .375in;
+    margin-left: -.375in;
+    img{
+      margin-top: -.5in;
+    }
+  }  
+}
+.node-blog.view-mode-print,
+.node-simplenews.view-mode-print{  
+  font-size: .16in;
+  line-height: .18in;
+
+  .rteright{
+    text-align: right;
+  }
+  .field-name-pdf-image-header{
+    img{
+    }
+  }
+  .group-titlebox{
+    margin-left: 2in;
+    margin-bottom: .25in;
+    background: #ffffce;
+    padding: .05in .25in .125in .5in;
+    
+      font-size: .2in;
+      color: #004080;
+    h3{
+      display: block;
+      font-family: 'Danube';
+      margin: 0 .125in;
+      padding: 0in .25in .0in -.25in;
+      font-size: .225in;
+      line-height: .2in;
+      color: #00509f;      
+      a{
+        color: #004080;
+      }
+    }
+    h4{
+      white-space: nowrap;
+      text-align: right;
+      
+      font-size: .2in;
+      color: #004080;
+      padding-right: .5in;
+      a{
+        color: #004080;
+      }
+    }
+  }
+
+  .field-name-body{
+    ul{
+      margin-left: 1.5in;
+      margin-right: .75in;
+      li{
+        ul{
+          margin: .25in;
+        }
+      }
+    }
+  }
+  .field-name-administrator-profile-image-user{
+    float: left;    
+    clear: none;    
+    padding: 5px;
+    margin: -.5in -.375in .0in .5in;
+    background: #f37018;
+    
+    width: 1.75in;    
+    text-align: center;
+    
+    font-size: .15in;
+    line-height: .14in;
+    color: white;
+    border-width: 0px;
+    img{
+      margin-bottom: .125in;
+    }
+  }
+  .field-name-body{
+    text-align: justify;
+    div.field-item{
+      margin: 0px .5in;
+    }
+    img{
+      margin-left: .25in;  
+    }   
+  }
+  .field-name-newsletter-contact-info{
+    background: black;
+    color: #d8d8d8;
+    font-size: .15in;
+    padding: .125in .75in;
+    a{
+      color: #d8d8d8;
+    }
+    table{
+      width: 100%;      
+    }
+    td{
+      padding: auto .25in;
+    }
+  }
+  .field-name-newsletter-static-base-content{
+    float: right;
+    clear: none;
+    background: silver;
+    padding: .05in .25in;
+    width: 3in;
+    float: right;
+    margin: 1.25in .75in .25in .25in;
+    img{
+      margin: -1.2in auto auto -.75in;
+      float: left;
+      clear: left;
+    }      
+    ul{
+      margin-left: .5in;
+      padding: 0px;
+      li{
+        list-style-type: disc;  
+      }      
+    }
+  }
+  .field-name-qr-base-url{
+    position: absolute;
+    left: 1in;
+    top: 9.75in;    
+    text-align: left;
+    font-size: .1in;
+  }
+  .field-name-newsletter-call-to-action{
+    margin: 0 0 -.5in 0;
+    
+    
+  }
+  .field-name-newsletter-call-to-action .field-items{
+    text-align: center;    
+    padding: .5in 0 .75in 0;
+    margin: 0 0 0in 0in;
+    .field-item{
+      width: 2.25in;
+      margin-left: .75in;
+      margin-bottom: -.5in;
+      padding: .1in;
+    }
+    em{
+      white-space: nowrap;
+      display: block;
+    }
+  }
+  .well{
+    border-width: 0px;
+  }
+}
+
+
+/* management for the restaurant menus page*/
+
+  .views-row-edit-static{
+    display: none!important;
+  }
+  caption{
+    font-size: larger;
+    color: maroon;
+  }

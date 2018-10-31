@@ -1,0 +1,11 @@
+name = Phone Link
+description = Provide formatter for text fields which replace phone number with link.
+core = 7.x
+package = Fields
+
+; Information added by Drupal.org packaging script on 2017-08-12
+version = "7.x-1.4"
+core = "7.x"
+project = "phone_link"
+datestamp = "1502510661"
+

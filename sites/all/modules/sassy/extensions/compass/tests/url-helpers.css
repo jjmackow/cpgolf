@@ -1,0 +1,8 @@
+.image-url-rel-root {
+  background-image: url('[[%base_url]]/misc/druplicon.png'); }
+
+.image-url-rel-pwd {
+  background-image: url('[[%base_url]]/[[%drupal_get_path:sassy_compass]]/tests/images/druplicon.png'); }
+
+.image-url-no-url {
+  background-image: [[%base_url]]/misc/druplicon.png; }

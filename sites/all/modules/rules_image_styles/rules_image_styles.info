@@ -1,0 +1,13 @@
+name = Rules image styles
+description = Rules support for doing stuff with image styles.
+package = Rules
+core = 7.x
+dependencies[] = rules
+
+
+; Information added by drupal.org packaging script on 2012-02-03
+version = "7.x-1.1-beta2"
+core = "7.x"
+project = "rules_image_styles"
+datestamp = "1328265349"
+

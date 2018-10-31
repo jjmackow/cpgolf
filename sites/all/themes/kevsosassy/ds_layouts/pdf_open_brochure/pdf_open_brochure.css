@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Styling for the pdf_open_brochure template.
+ */
+
+.print-big-col > .group-first {
+  width: 100%;
+  float: left; /* LTR */
+}
+

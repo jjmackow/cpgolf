@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * @file
+ *   (Un)installs the datetime_formatter module.
+ */
+
+function datetime_formatter_install() {
+  $formats = array(
+    'datetime_formatter_date_single_day' => array(
+      'title' => 'Date/Time - single day',
+      'format' => 'F d, Y',
+    ),
+    'datetime_formatter_date_several_days' => array(
+      'title' => 'Date/Time - several days',
+      'format' => 'F d - {d}, Y',
+    ),
+    'datetime_formatter_date_several_months' => array(
+      'title' => 'Date/Time - several months',
+      'format' => 'F d - {F} {d}, Y',
+    ),
+    'datetime_formatter_date_several_years' => array(
+      'title' => 'Date/Time - several years',
+      'format' => 'F d, Y - {F} {d}, {Y}',
+    ),
+    'datetime_formatter_time_single' => array(
+      'title' => 'Time - single',
+      'format' => 'g:ia T',
+    ),
+    'datetime_formatter_time_multi' => array(
+      'title' => 'Time - multi',
+      'format' => 'g:ia - {g}:{i}{a} {T}',
+    ),
+    'datetime_formatter_duration_single_day' => array(
+      'title' => 'Duration - single day',
+      'format' => '%h:%i:%s',
+    ),
+    'datetime_formatter_duration_several_days' => array(
+      'title' => 'Duration - several days',
+      'format' => '%d {days}',
+    ),
+    'datetime_formatter_relative_time_default' => array(
+      'title' => 'Relative - default',
+      'format' => 'M. jS - g:ia T',
+    ),
+  );
+
+  // Get existing date formats.
+  $existing_formats = db_select('date_formats', 'df')
+    ->fields('df', array('format'))
+    ->execute()
+    ->fetchAllKeyed(0, 1);
+
+  foreach ($formats as $type => $info) {
+    db_insert('date_format_type')
+      ->key(array('type' => $type))
+      ->fields(array(
+        'type' => $type,
+        'title' => $info['title'],
+        'locked' => 0))
+      ->execute();
+
+    // Save our new date formats.
+    if (!array_key_exists($info['format'], $existing_formats)) {
+      system_date_format_save(array(
+        'is_new' => 1,
+        'type' => 'custom',
+        'format' => $info['format'],
+        'locked' => 0,
+      ));
+    }
+
+    variable_set('date_format_' . $type, $info['format']);
+  }
+}
+/**
+ * Implements hook_uninstall().
+ */
+function datetime_formatter_uninstall() {
+  global $conf;
+
+  foreach($conf as $key => $value) {
+    if (strpos($key, 'datetime_formatter_') === 0) {
+      variable_del($conf[$key]);
+    }
+  }
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function datetime_formatter_requirements($phase) {
+  $return = array();
+  // Ensure translations don't break at install time.
+  $t = get_t();
+
+  if ($phase === 'runtime') {
+    $libraries = array(
+      'moment' => 'Moment.js',
+      'moment-timezone' => 'Moment Timezone',
+    );
+
+    foreach ($libraries as $name => $label) {
+      $library = libraries_detect($name);
+      $version = !empty($library['version']) ? $library['version'] : FALSE;
+      $return["moment_library_$name"] = array(
+        'title' => $t('@label library version', array('@label' => $label)),
+        'value' => $version ?: $t('Not available'),
+        'severity' => $version ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+      );
+    }
+  }
+
+  return $return;
+}

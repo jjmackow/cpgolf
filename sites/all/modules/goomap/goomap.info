@@ -1,0 +1,13 @@
+name = Goomap
+description = "Google maps"
+package = Goomap
+core = 7.x
+
+dependencies[] = geofield
+
+; Information added by Drupal.org packaging script on 2016-03-12
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "goomap"
+datestamp = "1457747344"
+

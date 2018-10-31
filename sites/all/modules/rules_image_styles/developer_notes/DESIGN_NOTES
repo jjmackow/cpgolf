@@ -1,0 +1,38 @@
+Info: These are just notes. Only read them if you want to understand the code.
+
+
+
+
+The Mission: We want to pre generate the image styles
+
+
+THE PROBLEM:
+========================================================
+We need to give image_style_create_derivative a destination, but we do not know the destination because
+maybe someone used tokens in the file paths like filefield_path module.
+So the only solution at the moment is using token_replace?
+
+
+
+How do i get the tokens of when some are used in the path, for example by filefield_paths?
+==========================================================================================
+
+We can get the path from filefield_paths array?
+/* check if  $image_fields2['field_texturbild']['ffp_field_texturbild']['file_path'] is set and filled with values
+* if not
+*  $image_fields2['field_texturbild']['settings']['file_directory']
+* IF filefield_paths is enabled ...
+*/
+
+SUMMARY: wrong idea. tokens have not been processed, we would need to do that manually.
+
+
+=========================================================================================
+
+Above ideas are all wrong we pass the node object with rules. We have all data there and can extract the already processed tokens out ou the field
+See image "node.jpg"  -> WRONG TOO, the data is only avaliable if VIEW node, on SAVE node, its not avaliable
+
+
+
+MANUALLY PROCESS TOKENS?
+

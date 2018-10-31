@@ -1,0 +1,13 @@
+name = GeSHi field
+description = Provides a field for source code with GeSHI syntax highlighting.
+package = Filters
+core = 7.x
+dependencies[] = field
+dependencies[] = geshifilter
+
+; Information added by Drupal.org packaging script on 2017-04-20
+version = "7.x-1.2+9-dev"
+core = "7.x"
+project = "geshifilter"
+datestamp = "1492655078"
+
