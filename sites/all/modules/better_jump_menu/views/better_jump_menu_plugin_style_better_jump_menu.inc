@@ -116,7 +116,7 @@ class better_jump_menu_plugin_style_better_jump_menu extends views_plugin_style 
    * @inheritdoc
    */
   function render_grouping_sets($sets, $level = 0) {
-    $output = '';
+    $output = array();
     foreach ($sets as $set) {
       $row = reset($set['rows']);
       // Render as a grouping set.

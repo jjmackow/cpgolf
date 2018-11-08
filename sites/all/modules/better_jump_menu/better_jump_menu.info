@@ -7,9 +7,8 @@ dependencies[] = ctools
 
 files[] = views/better_jump_menu_plugin_style_better_jump_menu.inc
 
-; Information added by Drupal.org packaging script on 2017-03-12
-version = "7.x-1.9"
+; Information added by Drupal.org packaging script on 2018-11-01
+version = "7.x-1.10"
 core = "7.x"
 project = "better_jump_menu"
-datestamp = "1489349890"
-
+datestamp = "1541108072"

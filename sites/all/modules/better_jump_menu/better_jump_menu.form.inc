@@ -127,7 +127,7 @@ function better_jump_menu($form, &$form_state, $select, $options = array()) {
   else {
     $form['go'] = array(
       '#type' => 'submit',
-      '#value' => $options['button'],
+      '#value' => $options['text'],
       '#submit' => array('better_jump_menu_submit'),
       '#attributes' => array(
         'class' => array('ctools-jump-menu-button'),
