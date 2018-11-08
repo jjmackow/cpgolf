@@ -73,6 +73,7 @@
  * @ingroup templates
  */
 ?>
+<div class="page-wrapper">
 <div class="body-overlay"></div>
 <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
@@ -88,8 +89,8 @@
       </div>
     
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
-      <div class="navbar-collapse collapse" id="navbar-collapse">
-        <nav role="navigation">
+      <nav class="<?php print $navbar_classes; ?>">
+        <div class="container-fluid">          
           <?php if (!empty($primary_nav)): ?>
             <?php print render($primary_nav); ?>
           <?php endif; ?>
@@ -98,9 +99,9 @@
           <?php endif; ?>
           <?php if (!empty($page['navigation'])): ?>
             <?php print render($page['navigation']); ?>
-          <?php endif; ?>
-        </nav>
-      </div>
+          <?php endif; ?>          
+        </div>
+      </nav>
     <?php endif; ?>
   </div>
 </header>
@@ -161,3 +162,4 @@
     <?php print render($page['footer']); ?>
   </footer>
 <?php endif; ?>
+</div>

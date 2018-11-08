@@ -58,6 +58,7 @@ h1,h2,h3,h4,h5,h6{
   font-family: 'Lato';
   font-weight: 100;
 }
+
 .node.view-mode-full{
   max-width: 1024px;  
 }
@@ -68,9 +69,20 @@ $slide-shade-secondary = rgba(gray,.5);
     width: 100%;
   }
 }
+
+
+.navbar.navbar-default{
+  margin-bottom: 0px;
+}
+.navbar-brand {
+  padding: 15px auto auto 15px;
+  height: 60px;
+}
+
 .slick--view--front-page-slider{
   .slick-dotted{
     position: relative;
+    overflow: hidden;
     .slick-dots{
       position: absolute;
       bottom: 15%;
@@ -90,9 +102,23 @@ $slide-shade-secondary = rgba(gray,.5);
       }
     }  
   }
+  .field-name-field-video .field-item{
+    margin-top: 15%;
+    position:relative;
+    display: inline-block;
+    &:after{
+      position: absolute;
+      content: "";
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      display: block;
+      @include background-image(linear-gradient(to left, rgba(255,255,255,1), rgba(0,0,0,0)));
+    }
+  }
   .slick-slide .slide__content{
     background: $sassy-clear-color;
-    padding-top: $std-space;
     height: 50vw;
     .player{
       text-align: right;

@@ -15,6 +15,10 @@ function kevsosassy_bugfix_custom_theme(){
     return variable_get('theme_default', 'bartik');    
 }
 
+function kevsosassy_menu_tree(array $variables) {
+  return '<ul class="nav navbar-nav">' . $variables['tree'] . '</ul>';
+}
+
 function kevsosassy_theme() {
   $items = array();
 	
