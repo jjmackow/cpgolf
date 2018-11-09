@@ -1,0 +1,114 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+FontName X-Files
+FontSubfamily Regular
+UniqueID Overexposed
+FullName X-Files
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 0
+UnderlinePosition 0
+FontHeightOffset 0
+Ascender 780
+Descender -295
+FontBBox -31 -295 807 780
+StartCharMetrics 97
+U 32 ; WX 492 ; N uni0020 ; G 3
+U 33 ; WX 175 ; N uni0021 ; G 80
+U 34 ; WX 315 ; N uni0022 ; G 91
+U 35 ; WX 377 ; N uni0023 ; G 81
+U 36 ; WX 418 ; N uni0024 ; G 82
+U 37 ; WX 501 ; N uni0025 ; G 83
+U 38 ; WX 600 ; N uni0026 ; G 85
+U 39 ; WX 68 ; N uni0027 ; G 92
+U 40 ; WX 211 ; N uni0028 ; G 87
+U 41 ; WX 217 ; N uni0029 ; G 88
+U 42 ; WX 345 ; N uni002a ; G 86
+U 44 ; WX 143 ; N uni002c ; G 68
+U 45 ; WX 489 ; N uni002d ; G 76
+U 46 ; WX 118 ; N uni002e ; G 69
+U 47 ; WX 396 ; N uni002f ; G 71
+U 48 ; WX 496 ; N uni0030 ; G 66
+U 49 ; WX 438 ; N uni0031 ; G 57
+U 50 ; WX 541 ; N uni0032 ; G 58
+U 51 ; WX 527 ; N uni0033 ; G 59
+U 52 ; WX 497 ; N uni0034 ; G 60
+U 53 ; WX 515 ; N uni0035 ; G 61
+U 54 ; WX 514 ; N uni0036 ; G 62
+U 55 ; WX 524 ; N uni0037 ; G 63
+U 56 ; WX 515 ; N uni0038 ; G 64
+U 57 ; WX 487 ; N uni0039 ; G 65
+U 58 ; WX 151 ; N uni003a ; G 89
+U 59 ; WX 209 ; N uni003b ; G 90
+U 63 ; WX 546 ; N uni003f ; G 70
+U 64 ; WX 524 ; N uni0040 ; G 67
+U 65 ; WX 732 ; N uni0041 ; G 5
+U 66 ; WX 686 ; N uni0042 ; G 7
+U 67 ; WX 654 ; N uni0043 ; G 9
+U 68 ; WX 709 ; N uni0044 ; G 11
+U 69 ; WX 640 ; N uni0045 ; G 13
+U 70 ; WX 664 ; N uni0046 ; G 15
+U 71 ; WX 671 ; N uni0047 ; G 17
+U 72 ; WX 617 ; N uni0048 ; G 19
+U 73 ; WX 455 ; N uni0049 ; G 21
+U 74 ; WX 677 ; N uni004a ; G 23
+U 75 ; WX 702 ; N uni004b ; G 25
+U 76 ; WX 665 ; N uni004c ; G 27
+U 77 ; WX 814 ; N uni004d ; G 29
+U 78 ; WX 685 ; N uni004e ; G 31
+U 79 ; WX 736 ; N uni004f ; G 33
+U 80 ; WX 644 ; N uni0050 ; G 35
+U 81 ; WX 699 ; N uni0051 ; G 37
+U 82 ; WX 744 ; N uni0052 ; G 39
+U 83 ; WX 635 ; N uni0053 ; G 41
+U 84 ; WX 633 ; N uni0054 ; G 43
+U 85 ; WX 704 ; N uni0055 ; G 45
+U 86 ; WX 847 ; N uni0056 ; G 47
+U 87 ; WX 793 ; N uni0057 ; G 49
+U 88 ; WX 710 ; N uni0058 ; G 51
+U 89 ; WX 654 ; N uni0059 ; G 53
+U 90 ; WX 575 ; N uni005a ; G 55
+U 92 ; WX 399 ; N uni005c ; G 72
+U 94 ; WX 578 ; N uni005e ; G 84
+U 95 ; WX 728 ; N uni005f ; G 77
+U 97 ; WX 649 ; N uni0061 ; G 6
+U 98 ; WX 670 ; N uni0062 ; G 8
+U 99 ; WX 629 ; N uni0063 ; G 10
+U 100 ; WX 689 ; N uni0064 ; G 12
+U 101 ; WX 644 ; N uni0065 ; G 14
+U 102 ; WX 531 ; N uni0066 ; G 16
+U 103 ; WX 632 ; N uni0067 ; G 18
+U 104 ; WX 614 ; N uni0068 ; G 20
+U 105 ; WX 479 ; N uni0069 ; G 22
+U 106 ; WX 428 ; N uni006a ; G 24
+U 107 ; WX 605 ; N uni006b ; G 26
+U 108 ; WX 471 ; N uni006c ; G 28
+U 109 ; WX 741 ; N uni006d ; G 30
+U 110 ; WX 606 ; N uni006e ; G 32
+U 111 ; WX 633 ; N uni006f ; G 34
+U 112 ; WX 724 ; N uni0070 ; G 36
+U 113 ; WX 702 ; N uni0071 ; G 38
+U 114 ; WX 555 ; N uni0072 ; G 40
+U 115 ; WX 545 ; N uni0073 ; G 42
+U 116 ; WX 589 ; N uni0074 ; G 44
+U 117 ; WX 684 ; N uni0075 ; G 46
+U 118 ; WX 764 ; N uni0076 ; G 48
+U 119 ; WX 755 ; N uni0077 ; G 50
+U 120 ; WX 649 ; N uni0078 ; G 52
+U 121 ; WX 678 ; N uni0079 ; G 54
+U 122 ; WX 529 ; N uni007a ; G 56
+U 123 ; WX 217 ; N uni007b ; G 78
+U 125 ; WX 210 ; N uni007d ; G 79
+U 169 ; WX 557 ; N uni00a9 ; G 73
+U 174 ; WX 550 ; N uni00ae ; G 74
+U 402 ; WX 779 ; N uni0192 ; G 4
+U 8216 ; WX 75 ; N uni2018 ; G 96
+U 8217 ; WX 79 ; N uni2019 ; G 94
+U 8220 ; WX 77 ; N uni201c ; G 95
+U 8221 ; WX 199 ; N uni201d ; G 93
+U 8482 ; WX 562 ; N uni2122 ; G 75
+EndCharMetrics
+EndFontMetrics

@@ -1,0 +1,107 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+Copyright Copyright Mieke3000.Ask permission for commercial use.  Email at Mieke3000@geocities.com
+FontName XLines
+FontSubfamily Regular
+UniqueID XLines
+FullName XLines
+Version 1.00; Mieke3000@geocities.com;http://start.at/mieke3000
+PostScriptName XLines
+Trademark Mieke3000
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 0
+UnderlinePosition 0
+FontHeightOffset 0
+Ascender 984
+Descender -177
+FontBBox -50 -177 840 984
+StartCharMetrics 85
+U 32 ; WX 270 ; N uni0020 ; G 46
+U 33 ; WX 472 ; N uni0021 ; G 38
+U 35 ; WX 739 ; N uni0023 ; G 42
+U 36 ; WX 677 ; N uni0024 ; G 39
+U 37 ; WX 622 ; N uni0025 ; G 84
+U 38 ; WX 739 ; N uni0026 ; G 43
+U 39 ; WX 387 ; N uni0027 ; G 82
+U 40 ; WX 373 ; N uni0028 ; G 75
+U 41 ; WX 373 ; N uni0029 ; G 76
+U 42 ; WX 308 ; N uni002a ; G 77
+U 43 ; WX 492 ; N uni002b ; G 78
+U 44 ; WX 449 ; N uni002c ; G 83
+U 45 ; WX 449 ; N uni002d ; G 79
+U 46 ; WX 317 ; N uni002e ; G 44
+U 47 ; WX 622 ; N uni002f ; G 80
+U 48 ; WX 739 ; N uni0030 ; G 37
+U 49 ; WX 411 ; N uni0031 ; G 28
+U 50 ; WX 739 ; N uni0032 ; G 29
+U 51 ; WX 739 ; N uni0033 ; G 30
+U 52 ; WX 739 ; N uni0034 ; G 31
+U 53 ; WX 739 ; N uni0035 ; G 32
+U 54 ; WX 739 ; N uni0036 ; G 33
+U 55 ; WX 739 ; N uni0037 ; G 34
+U 56 ; WX 739 ; N uni0038 ; G 35
+U 57 ; WX 739 ; N uni0039 ; G 36
+U 58 ; WX 317 ; N uni003a ; G 73
+U 59 ; WX 357 ; N uni003b ; G 74
+U 61 ; WX 449 ; N uni003d ; G 83
+U 63 ; WX 577 ; N uni003f ; G 40
+U 64 ; WX 739 ; N uni0040 ; G 41
+U 65 ; WX 789 ; N uni0041 ; G 1
+U 66 ; WX 739 ; N uni0042 ; G 2
+U 67 ; WX 739 ; N uni0043 ; G 3
+U 68 ; WX 739 ; N uni0044 ; G 4
+U 69 ; WX 739 ; N uni0045 ; G 5
+U 70 ; WX 681 ; N uni0046 ; G 6
+U 71 ; WX 739 ; N uni0047 ; G 7
+U 72 ; WX 739 ; N uni0048 ; G 8
+U 73 ; WX 404 ; N uni0049 ; G 9
+U 74 ; WX 627 ; N uni004a ; G 10
+U 75 ; WX 739 ; N uni004b ; G 11
+U 76 ; WX 674 ; N uni004c ; G 12
+U 77 ; WX 739 ; N uni004d ; G 13
+U 78 ; WX 739 ; N uni004e ; G 14
+U 79 ; WX 739 ; N uni004f ; G 15
+U 80 ; WX 649 ; N uni0050 ; G 16
+U 81 ; WX 739 ; N uni0051 ; G 17
+U 82 ; WX 739 ; N uni0052 ; G 18
+U 83 ; WX 721 ; N uni0053 ; G 19
+U 84 ; WX 739 ; N uni0054 ; G 20
+U 85 ; WX 739 ; N uni0055 ; G 21
+U 86 ; WX 739 ; N uni0056 ; G 22
+U 87 ; WX 739 ; N uni0057 ; G 23
+U 88 ; WX 732 ; N uni0058 ; G 24
+U 89 ; WX 739 ; N uni0059 ; G 25
+U 90 ; WX 739 ; N uni005a ; G 26
+U 92 ; WX 622 ; N uni005c ; G 81
+U 97 ; WX 494 ; N uni0061 ; G 47
+U 98 ; WX 490 ; N uni0062 ; G 48
+U 99 ; WX 494 ; N uni0063 ; G 49
+U 100 ; WX 494 ; N uni0064 ; G 50
+U 101 ; WX 494 ; N uni0065 ; G 51
+U 102 ; WX 494 ; N uni0066 ; G 52
+U 103 ; WX 494 ; N uni0067 ; G 53
+U 104 ; WX 494 ; N uni0068 ; G 54
+U 105 ; WX 342 ; N uni0069 ; G 55
+U 106 ; WX 400 ; N uni006a ; G 56
+U 107 ; WX 494 ; N uni006b ; G 57
+U 108 ; WX 386 ; N uni006c ; G 58
+U 109 ; WX 494 ; N uni006d ; G 59
+U 110 ; WX 494 ; N uni006e ; G 60
+U 111 ; WX 494 ; N uni006f ; G 61
+U 112 ; WX 494 ; N uni0070 ; G 62
+U 113 ; WX 494 ; N uni0071 ; G 63
+U 114 ; WX 494 ; N uni0072 ; G 64
+U 115 ; WX 494 ; N uni0073 ; G 65
+U 116 ; WX 494 ; N uni0074 ; G 66
+U 117 ; WX 494 ; N uni0075 ; G 67
+U 118 ; WX 494 ; N uni0076 ; G 68
+U 119 ; WX 494 ; N uni0077 ; G 69
+U 120 ; WX 494 ; N uni0078 ; G 70
+U 121 ; WX 494 ; N uni0079 ; G 71
+U 122 ; WX 494 ; N uni007a ; G 72
+EndCharMetrics
+EndFontMetrics

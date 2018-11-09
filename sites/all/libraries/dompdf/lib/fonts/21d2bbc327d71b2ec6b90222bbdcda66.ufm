@@ -1,0 +1,230 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+Copyright (c) 2001 Levi
+FontName Danube
+FontSubfamily Regular
+UniqueID Macromedia Fontographer 4.1 Danube
+FullName Danube
+Version Macromedia Fontographer 4.1 2001.02.15.
+PostScriptName Danube
+Trademark 
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 20
+UnderlinePosition -133
+FontHeightOffset 0
+Ascender 1216
+Descender -416
+FontBBox 0 -416 1450 1216
+StartCharMetrics 82
+U 32 ; WX 443 ; N space ; G 3
+U 33 ; WX 249 ; N exclam ; G 4
+U 34 ; WX 467 ; N quotedbl ; G 5
+U 39 ; WX 249 ; N quotesingle ; G 6
+U 43 ; WX 692 ; N plus ; G 7
+U 44 ; WX 251 ; N comma ; G 8
+U 45 ; WX 716 ; N hyphen ; G 9
+U 46 ; WX 250 ; N period ; G 10
+U 47 ; WX 405 ; N slash ; G 11
+U 48 ; WX 886 ; N zero ; G 12
+U 49 ; WX 251 ; N one ; G 13
+U 50 ; WX 945 ; N two ; G 14
+U 51 ; WX 706 ; N three ; G 15
+U 52 ; WX 792 ; N four ; G 16
+U 53 ; WX 965 ; N five ; G 17
+U 54 ; WX 876 ; N six ; G 18
+U 55 ; WX 719 ; N seven ; G 19
+U 56 ; WX 874 ; N eight ; G 20
+U 57 ; WX 889 ; N nine ; G 21
+U 58 ; WX 249 ; N colon ; G 22
+U 59 ; WX 249 ; N semicolon ; G 23
+U 61 ; WX 687 ; N equal ; G 24
+U 63 ; WX 625 ; N question ; G 25
+U 65 ; WX 889 ; N A ; G 26
+U 66 ; WX 875 ; N B ; G 27
+U 67 ; WX 673 ; N C ; G 28
+U 68 ; WX 876 ; N D ; G 29
+U 69 ; WX 693 ; N E ; G 30
+U 70 ; WX 670 ; N F ; G 31
+U 71 ; WX 887 ; N G ; G 32
+U 72 ; WX 792 ; N H ; G 33
+U 73 ; WX 251 ; N I ; G 34
+U 74 ; WX 719 ; N J ; G 35
+U 75 ; WX 873 ; N K ; G 36
+U 76 ; WX 649 ; N L ; G 37
+U 77 ; WX 1528 ; N M ; G 38
+U 78 ; WX 887 ; N N ; G 39
+U 79 ; WX 874 ; N O ; G 40
+U 80 ; WX 876 ; N P ; G 41
+U 81 ; WX 881 ; N Q ; G 42
+U 82 ; WX 651 ; N R ; G 43
+U 83 ; WX 949 ; N S ; G 44
+U 84 ; WX 848 ; N T ; G 45
+U 85 ; WX 887 ; N U ; G 46
+U 86 ; WX 887 ; N V ; G 47
+U 87 ; WX 1528 ; N W ; G 48
+U 88 ; WX 888 ; N X ; G 49
+U 89 ; WX 865 ; N Y ; G 50
+U 90 ; WX 947 ; N Z ; G 51
+U 92 ; WX 481 ; N backslash ; G 52
+U 95 ; WX 716 ; N underscore ; G 53
+U 97 ; WX 889 ; N a ; G 54
+U 98 ; WX 875 ; N b ; G 55
+U 99 ; WX 673 ; N c ; G 56
+U 100 ; WX 876 ; N d ; G 57
+U 101 ; WX 693 ; N e ; G 58
+U 102 ; WX 670 ; N f ; G 59
+U 103 ; WX 889 ; N g ; G 60
+U 104 ; WX 887 ; N h ; G 61
+U 105 ; WX 251 ; N i ; G 62
+U 106 ; WX 719 ; N j ; G 63
+U 107 ; WX 874 ; N k ; G 64
+U 108 ; WX 598 ; N l ; G 65
+U 109 ; WX 1528 ; N m ; G 66
+U 110 ; WX 887 ; N n ; G 67
+U 111 ; WX 874 ; N o ; G 68
+U 112 ; WX 876 ; N p ; G 69
+U 113 ; WX 881 ; N q ; G 70
+U 114 ; WX 690 ; N r ; G 71
+U 115 ; WX 971 ; N s ; G 72
+U 116 ; WX 665 ; N t ; G 73
+U 117 ; WX 887 ; N u ; G 74
+U 118 ; WX 887 ; N v ; G 75
+U 119 ; WX 1528 ; N w ; G 76
+U 120 ; WX 888 ; N x ; G 77
+U 121 ; WX 890 ; N y ; G 78
+U 122 ; WX 867 ; N z ; G 79
+U 8208 ; WX 716 ; N hyphen ; G 9
+EndCharMetrics
+StartKernData 
+StartKernPairs 474
+
+KPX space hyphen -181
+KPX space three -192
+KPX space O -192
+
+KPX quotesingle hyphen -155
+KPX quotesingle three -176
+KPX quotesingle O -176
+
+KPX plus comma -440
+KPX plus question -468
+KPX plus H -440
+
+KPX comma comma -441
+KPX comma question -450
+KPX comma H -441
+
+KPX hyphen comma -312
+KPX hyphen six -126
+KPX hyphen colon -125
+KPX hyphen question -322
+KPX hyphen D -125
+KPX hyphen G -133
+KPX hyphen H -312
+
+KPX period comma -177
+KPX period question -186
+KPX period H -177
+
+KPX slash comma -176
+KPX slash question -185
+KPX slash H -176
+
+KPX zero comma -175
+KPX zero question -185
+KPX zero H -175
+
+KPX two comma -302
+KPX two question -311
+KPX two H -302
+
+KPX three hyphen -321
+KPX three two -263
+KPX three three -438
+KPX three four -235
+KPX three O -438
+
+KPX four hyphen -252
+KPX four two -156
+KPX four three -267
+KPX four four -241
+KPX four O -267
+
+KPX six O -177
+
+KPX seven question -182
+KPX seven H -173
+KPX seven O -169
+
+
+KPX nine question -181
+KPX nine H -172
+KPX nine O -171
+
+KPX semicolon question -437
+KPX semicolon H -354
+
+KPX equal O -176
+
+KPX question question -186
+KPX question H -176
+
+KPX A four -182
+KPX A O -373
+
+KPX B O -176
+
+KPX C O -176
+
+KPX D question -181
+KPX D H -172
+KPX D O -171
+
+KPX E question -182
+KPX E H -173
+KPX E O -172
+
+KPX F O -170
+
+KPX G six -149
+KPX G eight -148
+KPX G nine -141
+KPX G colon -148
+KPX G question -491
+KPX G B -141
+KPX G C -141
+KPX G D -148
+KPX G E -141
+KPX G F -149
+KPX G H -463
+
+KPX H six -148
+KPX H eight -148
+KPX H colon -148
+KPX H question -472
+KPX H B -141
+KPX H D -148
+KPX H E -141
+KPX H F -148
+KPX H H -462
+
+KPX I O -197
+
+KPX J question -186
+KPX J H -177
+
+KPX K question -185
+KPX K H -176
+
+KPX L question -185
+KPX L H -175
+
+KPX O four -155
+KPX O O -359
+EndKernPairs
+EndKernData
+EndFontMetrics
