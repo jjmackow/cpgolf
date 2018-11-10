@@ -363,6 +363,51 @@ body.node-type-photosphere{
     }  
   }  
 }
+/**
+ *menu overrides (superfish)
+ */
+#navbar .sf-menu {
+  float: left;
+  margin-bottom: 0em;
+  margin-top: 1em;
+  padding: 0;
+}
+
+
+
+#navbar .sf-menu li,
+#navbar .sf-menu.sf-navbar {
+  margin-top: 50%;
+  ul li{
+    @include border-radius(4px);
+    a{
+      @include border-radius(4px);
+    }
+  }
+  background: #ce552b;
+  margin: auto 5px;
+  @include transition-duration(.420s);
+  @include border-radius(8px);
+  a,
+  span.nolink {
+    border: 1px outset #e95420;
+    border-top: 0;
+    @include border-radius(8px);
+    color: #ffebee;
+    padding: 0.75em 1em;
+    
+    &:hover,
+    &:focus{
+      text-decoration: none;
+      
+    }
+    .sf-sub-indicator{
+      right: 0.25em;
+    }
+  }  
+}
+
+
 .view.view-all-tags{
   background: rgba(0,0,0,0);
   .form-item{
