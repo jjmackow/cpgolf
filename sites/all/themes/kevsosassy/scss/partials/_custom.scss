@@ -6,7 +6,8 @@ $btn-default = #555555;
   color: white;
 }
 $sassy-red = red;
-$sassy-orange = rgba(255, 150, 45, 0.8);
+
+$sassy-orange = rgba(206, 85, 43, 0.8);
 $sassy-gray = rgba(91,91,91,1);
 $sassy-clear-color = rgba(0,0,0,0);
 
@@ -70,7 +71,6 @@ $slide-shade-secondary = rgba(gray,.5);
   }
 }
 
-
 .navbar.navbar-default{
   margin-bottom: 0px;
 }
@@ -80,6 +80,9 @@ $slide-shade-secondary = rgba(gray,.5);
 }
 
 .slick--view--front-page-slider{
+  .slick__slide{
+    background: white;
+  }
   .slick-dotted{
     position: relative;
     overflow: hidden;
@@ -92,7 +95,7 @@ $slide-shade-secondary = rgba(gray,.5);
         @include transition-duration(1s);
         button{
           background: rgba(255,255,255,.6);
-          @include border-radius(25px);          
+          @include border-radius($large-corners);
         }
         &.slick-active{
           button{
@@ -367,44 +370,53 @@ body.node-type-photosphere{
  *menu overrides (superfish)
  */
 #navbar .sf-menu {
-  float: left;
-  margin-bottom: 0em;
-  margin-top: 1em;
-  padding: 0;
-}
-
-
-
-#navbar .sf-menu li,
-#navbar .sf-menu.sf-navbar {
-  margin-top: 50%;
-  ul li{
-    @include border-radius(4px);
-    a{
-      @include border-radius(4px);
+  li{
+    background: $sassy-orange;
+    @include transition-duration(.420s);
+  }
+  >li{    
+    margin: auto 5px;    
+    a,
+    span.nolink {
+      border: 1px outset #e95420;
+      border-top: 0;
+      @include border-radius($small-corners);
+      color: #ffebee;
+      padding: 0.75em 1em;
+      
+      &:hover,
+      &:focus{
+        text-decoration: none;
+        
+      }
+      .sf-sub-indicator{
+        right: 0.25em;
+      }
+    }
+    ul li{
+      @include border-radius($small-corners);
+      a{
+        @include border-radius($small-corners);
+      }
     }
   }
-  background: #ce552b;
-  margin: auto 5px;
-  @include transition-duration(.420s);
-  @include border-radius(8px);
-  a,
-  span.nolink {
-    border: 1px outset #e95420;
-    border-top: 0;
-    @include border-radius(8px);
-    color: #ffebee;
-    padding: 0.75em 1em;
-    
-    &:hover,
-    &:focus{
-      text-decoration: none;
-      
+  
+  &.sf-main-menu{
+    margin-top: 1em;
+    margin-bottom: 0em;
+    padding: 0;
+    li{
+      @include border-radius($medium-corners);      
     }
-    .sf-sub-indicator{
-      right: 0.25em;
+  }
+  &.sf-user-menu{
+    li{
+      @include border-radius(0 0 $large-corners $large-corners);
+      a{
+        @include border-radius(0 0 $large-corners $large-corners);
+      }
     }
-  }  
+  }
 }
 
 
