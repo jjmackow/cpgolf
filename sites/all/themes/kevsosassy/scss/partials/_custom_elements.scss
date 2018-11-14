@@ -5,10 +5,10 @@
   position: relative;
   width: 4em;
   height: 4em;
-  
+  margin: 5px;
   border: 1px solid black;
-  background: red;  
-  color: white;      //sets the colors for the pad
+  background: $overlay-bg-color;
+  color: $sassy-orange;
   
   padding: $pad-padding;
   b{

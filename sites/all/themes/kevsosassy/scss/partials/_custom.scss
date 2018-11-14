@@ -523,8 +523,32 @@ body.node-type-photosphere{
  *
  *
  */
+
 #block-views-latest-ideas-block-fp{
+  $heading-color: $sassy-orange;  
+  h5{
+    color: $heading-color;
+  }
+  .node-teaser{
+     margin: $std-space auto;
+     background: rgba(0,0,0,.1);
+     @include border-radius($large-corners);
+     h4{
+      margin: auto $std-space;
+      font-size: larger;
+      color: $heading-color;
+      font-weight: bold;
+     }
+  }
+  
   >.view-latest-ideas{
+     background: rgba(0, 65, 130, 0.1);
+     @include border-radius($medium-corners);
+     .btn.btn-primary{
+      padding: 0px;
+      margin-bottom: $std-space;
+      @include border-radius($small-corners);
+     }
     >.vew-content{
       
     }  
@@ -534,8 +558,8 @@ body.node-type-photosphere{
       }
     }    
   }
-  background: none;
-  .well{
-    @include border-radius($large-corners);
+  background: none;  
+  .well{    
+    @include border-radius($medium-corners);    
   }
 }
