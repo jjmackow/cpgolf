@@ -407,7 +407,10 @@ body.node-type-photosphere{
     margin-bottom: 0em;
     padding: 0;
     li{
-      @include border-radius($medium-corners);      
+      @include border-radius($medium-corners);
+      a{
+        @include border-radius($medium-corners);
+      }
     }
   }
   &.sf-user-menu{
