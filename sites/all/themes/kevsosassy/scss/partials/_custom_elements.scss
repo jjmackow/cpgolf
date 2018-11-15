@@ -6,7 +6,8 @@
   width: 4em;
   height: 4em;
   margin: 5px;
-  border: 1px solid black;
+  border: 1px solid #e4d1b2;
+  @include border-radius($small-corners);
   background: $overlay-bg-color;
   color: $sassy-orange;
   
@@ -19,6 +20,7 @@
       text-align: center;
       font-size: 1.5em;
       background: rgba(255, 255, 255, 0.3);
+      @include border-radius($small-corners $small-corners 0 0);
       margin: auto calc(-$pad-padding);
     }
     .&:nth-of-type(2) {
@@ -48,4 +50,10 @@
 }
 .bg-dark{
   background: rgba(0, 0, 0, 0.3);
+}
+.important{
+  color: orange;
+  background: white;
+  border: 1px solid blue;
+  @include border-radius($small-corners);
 }
