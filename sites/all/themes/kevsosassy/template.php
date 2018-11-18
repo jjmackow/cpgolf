@@ -158,3 +158,38 @@ function removeImageQueryStrings($html, $imageSrcDelimiter='"'){
 	}
 	return $html;
 }
+
+/**
+ * Process variables for search-result.tpl.php.
+ *
+ * @see search-result.tpl.php
+ */
+function kevsosassy_preprocess_search_result(&$vars) {
+  // Remove user name and modification date from search results.
+  $vars['info'] = '';
+}
+
+/**
+ * Overrides Theme function to output tablinks for classic Quicktabs style tabs.
+ */
+function kevsosassy_qt_quicktabs_tabset($vars) {
+  $variables = array(
+    'attributes' => array(
+      'class' => 'quicktabs-tabs quicktabs-style-' . $vars['tabset']['#options']['style'],
+    ),
+    'items' => array(),
+  );
+  foreach (element_children($vars['tabset']['tablinks']) as $key) {
+    $item = array();
+    if (is_array($vars['tabset']['tablinks'][$key])) {
+      $tab = $vars['tabset']['tablinks'][$key];
+      $tab['#options']['html'] = TRUE; // Added this to override to allow HTML in titles.
+      if ($key == $vars['tabset']['#options']['active']) {
+        $item['class'] = array('active');
+      }
+      $item['data'] = drupal_render($tab);
+      $variables['items'][] = $item;
+    }
+  }
+  return theme('item_list', $variables);
+}

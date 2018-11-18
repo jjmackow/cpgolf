@@ -6,6 +6,7 @@
 
 	/* Custom, iPhone Retina */
 	@media only screen and (min-width: 1024px){
+
 	}
 	@media only screen and (max-width : 320px){
 
@@ -18,11 +19,23 @@
 	}
 	@media only screen and (max-width : 670px){
 
-
 	}
 
 	/* Medium Devices, Desktops */
+	@media only screen and (max-width : 1300px){
+		.tab-container{
+			@include translateY(-9vw);
+		}
 	@media only screen and (max-width : 992px){
+		.slick--view--front-page-slider{
+		  .slick-dotted{
+		    .slick-dots{
+          position: absolute;
+          top: 55%;
+          right: -50%;
+				}
+			}
+		}
 		.view-mode-slider.wrapper{
 			.group-overlay{
 				left: 50%;
@@ -84,6 +97,12 @@
 				}
 			}
 		}	
+	}
+	/* Extra Small Devices, Phones */
+	@media only screen and (max-width: 640px){
+		.tab-container{
+			@include translateY(0em);
+		}
 	}
 	/* Extra Small Devices, Phones */
 	@media only screen and (max-width: 480px){

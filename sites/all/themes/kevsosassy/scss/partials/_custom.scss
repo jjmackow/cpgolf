@@ -570,8 +570,78 @@ body.node-type-photosphere{
       }
     }    
   }
-  background: none;  
   .well{    
     @include border-radius($medium-corners);    
   }
+}
+
+.etabs{  
+  text-align: center;
+  ul{
+    margin: 0;
+    padding: 0;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    .tab {      
+      display: table-cell;
+      border: none;
+      vertical-align: bottom;
+      zoom:1;
+      *display:inline;
+      a{
+        display: block;
+        padding: 5px 10px;
+        margin: 0 5px;
+        background: #eee; border: solid 1px #999;
+        border-bottom: none;
+        @include border-radius($small-corners $small-corners 0 0);        
+        outline: none;
+        @include transition-duration(.420s);
+        &:hover {
+          color: red;
+          text-decoration: none;
+        }
+        &.active {
+          background: green;
+        }
+        >ul{
+          list-style: none;
+          font-size: 1vw;
+          li{            
+            line-height: 1em;
+            white-space: nowrap;
+            &:nth-of-type(1){
+              font-size: 2em;
+            }
+            &:nth-of-type(2){
+              font-size: 1.25em;
+            }
+            &:nth-of-type(3){
+              font-size: 1.5em;
+            }
+          }
+        }
+      }
+      &.active { 
+        padding-top: 6px;
+        position: relative;
+        top: -6px;        
+        a{
+          background: #fff;
+          border-color: #666;
+        }
+      }      
+    }
+  }  
+}
+
+.tab-container{
+  @include translateY(-6vw);
+  >.view-content {
+    background: #fff;
+    
+    padding: 10px;
+    @include border-radius( 0 4px 4px 4px);
+  }  
 }
