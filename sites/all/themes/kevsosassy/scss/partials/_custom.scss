@@ -40,7 +40,7 @@ $down-arrow-icon = "../images/gray-arrow.png";
 @import "partials/variables";
 @import "partials/bg_mixins";
 
-@mixin  image-gradient-after(){
+@mixin image-gradient-after(){
     &:after{
       content: " ";
       display: block;
@@ -73,6 +73,7 @@ $slide-shade-secondary = rgba(gray,.5);
 
 .navbar.navbar-default{
   margin-bottom: 0px;
+  overflow-y: hidden;
 }
 .navbar-brand {
   padding: 15px auto auto 15px;
@@ -367,62 +368,6 @@ body.node-type-photosphere{
     }  
   }  
 }
-/**
- *menu overrides (superfish)
- */
-#navbar .sf-menu {
-  li{
-    background: $sassy-orange;
-    @include transition-duration(.420s);
-  }
-  >li{    
-    margin: auto 5px;    
-    a,
-    span.nolink {
-      border: 1px outset #e95420;
-      
-      border-top: 0;
-      @include border-radius($medium-corners);
-      color: #ffebee;
-      padding: 0.75em 1em;
-      
-      &:hover,
-      &:focus{
-        text-decoration: none;
-        
-      }
-      .sf-sub-indicator{
-        right: 0.25em;
-      }
-    }
-    ul li{
-      @include border-radius($small-corners);
-      a{
-        @include border-radius($small-corners);
-      }
-    }
-  }
-  
-  &.sf-main-menu{
-    margin-top: 1em;
-    margin-bottom: 0em;
-    padding: 0;
-    li{
-      @include border-radius($small-corners);
-      a{
-        @include border-radius($small-corners);
-      }
-    }
-  }
-  &.sf-user-menu{
-    li{
-      @include border-radius(0 0 $large-corners $large-corners);
-      a{
-        @include border-radius(0 0 $large-corners $large-corners);
-      }
-    }
-  }
-}
 
 .view.view-all-tags{
   background: rgba(0,0,0,0);
@@ -574,7 +519,17 @@ body.node-type-photosphere{
     @include border-radius($medium-corners);    
   }
 }
-
+.view-fp-tabs-carousel{}
+.draggableviews-grid-fp_tabs_carousel-page_manage{
+  >li{
+    &:nth-of-type(n+4){
+      background: rgba(red,.05);
+    }
+    &:nth-of-type(-n+3){
+      background: rgba(green,.05);
+    }
+  }
+}
 .etabs{  
   text-align: center;
   ul{
@@ -587,12 +542,13 @@ body.node-type-photosphere{
       display: table-cell;
       border: none;
       vertical-align: bottom;
+      @include transition-duration(.420s);
       zoom:1;
       *display:inline;
       a{
         display: block;
-        padding: 5px 10px;
-        margin: 0 5px;
+        padding: 5px;
+        margin: 0 .5vw;
         background: #eee; border: solid 1px #999;
         border-bottom: none;
         @include border-radius($small-corners $small-corners 0 0);        
@@ -602,20 +558,23 @@ body.node-type-photosphere{
           color: red;
           text-decoration: none;
         }
-        &.active {
-          background: green;
+        &.active {          
+          text-decoration: none;
         }
         >ul{
           list-style: none;
-          font-size: 1vw;
+          font-size: 1.5vw;
+          text-transform: uppercase;
+          /* The Front Page Tab Text; */
           li{            
             line-height: 1em;
             white-space: nowrap;
             &:nth-of-type(1){
-              font-size: 2em;
+              font-size: 1.4em;
             }
             &:nth-of-type(2){
-              font-size: 1.25em;
+              font-size: 1.7em;
+              font-weight: bold;
             }
             &:nth-of-type(3){
               font-size: 1.5em;
@@ -626,10 +585,12 @@ body.node-type-photosphere{
       &.active { 
         padding-top: 6px;
         position: relative;
-        top: -6px;        
+        top: -6px;
+        text-decoration: none;
         a{
           background: #fff;
           border-color: #666;
+          text-decoration: none;
         }
       }      
     }
@@ -644,4 +605,107 @@ body.node-type-photosphere{
     padding: 10px;
     @include border-radius( 0 4px 4px 4px);
   }  
+}
+/*
+Page Editing (Content Types})
+
+*/
+form{
+  max-width: 1080px;
+  margin: auto;
+}
+.form-checkboxes{
+  background: gray;
+  @include border-radius();
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto -15px;
+  .form-item.checkbox{
+    min-width: 130px;
+    width: 29%;
+    margin: 15px 2%;
+    order: 1;
+  }
+
+  .checkbox{
+    border: 1px solid gray;
+    background: white;
+    padding: 5px;
+    margin: 5px 15px;
+    @include border-radius(5px);
+    -ms-transform: skewX(-7deg); /* IE 9 */
+    -webkit-transform: skewX(-7deg); /* Safari */
+    transform: skewX(-7deg);
+    label{
+      color: blue;
+    }
+  }
+}
+form.entityform{
+    
+  input{
+    @include border-radius(5px);
+    transform: skewX(-7deg);
+    &::placeholder{
+      color: #f3a30c;
+      font-style: italic;
+    }
+  }
+}
+body.page-node-edit{
+  .panel-body{    
+    >.form-item-title,
+    >.field-name-field-include-in-tabs{      
+      
+      display: inline-block;
+      >*{
+        margin: 5px 10px;
+        
+        text-align: center;
+      }
+    }
+    >.form-item-title{
+      @include border-radius(5px);
+      -ms-transform: skewX(-7deg); /* IE 9 */
+      -webkit-transform: skewX(-7deg); /* Safari */
+      transform: skewX(-7deg);
+    }
+  }
+
+  .group-tabs{
+    >div{
+      margin-bottom: 15px;
+      padding: 5px;
+      @include border-radius($medium-corners);
+      &:nth-of-type(2n){
+        background: rgb(200, 253, 252, .2);
+      }
+      &:nth-of-type(2n-1){
+        background: rgb(200, 253, 252, .4);
+      }
+    }
+  } 
+  .help-block,
+  .description{
+    color: magenta;
+    padding: 3px 30px;
+    font-size: 1em;
+  }
+  .form-type-checkboxes,
+  thead>tr>th{
+    >label{
+      font-weight: bold;
+      font-size: 1.3em;
+    }    
+  }
+  &.node-type-page{    
+    .form-checkboxes{
+      display: flex;
+      flex-wrap: wrap;
+      .form-type-checkbox{
+        width: 210px;
+        order: 1;
+      }      
+    }
+  }
 }

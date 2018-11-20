@@ -64,10 +64,32 @@
 					}
 				}
 			}
-		}	
+		}		
+		.etabs{
+		  ul{
+		    .tab {
+		      a{
+		        >ul{		      
+		          font-size: 2vw;
+						}
+					}
+				}
+			}
+		}
 	}
+
+	
 	/* Small Devices, Tablets */
 	@media only screen and (max-width : 768px){
+	.region-blockgroup-main-nav{
+		display: block;
+	
+		#block-system-user-menu,
+		#block-system-main-menu{
+			ul.nav{
+				display: block;
+			}
+		}
 		.view-mode-slider.wrapper{
 			.group-overlay{
 				left: 50%;
@@ -99,6 +121,8 @@
 		}	
 	}
 	/* Extra Small Devices, Phones */
+	
+
 	@media only screen and (max-width: 640px){
 		.tab-container{
 			@include translateY(0em);
