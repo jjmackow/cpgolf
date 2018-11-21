@@ -11,6 +11,10 @@ $sassy-orange = rgba(206, 85, 43, 0.8);
 $sassy-gray = rgba(91,91,91,1);
 $sassy-clear-color = rgba(0,0,0,0);
 
+
+$menu-font-family = "Arial";
+
+
 $overlay-bg-color = rgba(255,255,255,.8);
 $overlay-bg-color-open = rgb(247, 247, 247);
 $overlay-color-open = rgb(64, 64, 64);
@@ -72,13 +76,47 @@ $slide-shade-secondary = rgba(gray,.5);
 }
 
 .navbar.navbar-default{
-  margin-bottom: 0px;
+  margin-bottom: 1em;
   overflow-y: hidden;
 }
 .navbar-brand {
   padding: 15px auto auto 15px;
   height: 60px;
 }
+
+  .blockgroup.main-navigation{
+    ul.navbar-nav{
+      text-align: center;
+      margin: 1% 5% 2%;
+      border: blue dotted 5px;
+      border-width: 0px 0px 5px 0px;
+      >li{
+        border: 1px dashed rgba(255, 255, 255, .5);
+        border-width: 1px 0px;
+        margin-left: 3%;
+        padding-left: 20%;
+        width: 75%;
+        text-align: left;
+        &:first-of-type{
+          border-width: 0px 0px 1px;
+        }
+        &:last-of-type{
+          border-width: 1px 0px 0px;
+        }
+        >a{
+          font-family: $menu-font-family;
+          font-variant: small-caps;
+          font-weight: bold;        
+          font-size: 5vw;
+        }
+      }    
+    }
+  }
+  .block-system.block-menu:last-of-type{
+    ul{
+      border-bottom: none;
+    }
+  }
 
 .slick--view--front-page-slider{
   .slick__slide{
@@ -519,7 +557,9 @@ body.node-type-photosphere{
     @include border-radius($medium-corners);    
   }
 }
-.view-fp-tabs-carousel{}
+.view-id-front_page_slider.view-display-id-block_arrange_slides{
+  margin-bottom: 130px;
+}
 .draggableviews-grid-fp_tabs_carousel-page_manage{
   >li{
     &:nth-of-type(n+4){

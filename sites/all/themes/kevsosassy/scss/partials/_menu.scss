@@ -2,6 +2,50 @@
  *menu overrides (superfish)
  */
 @media only screen and (min-width : 769px){
+  .blockgroup.main-navigation{
+    ul.navbar-nav{
+      >li{
+        >a{ 
+          font-size: 1.25em;
+        }
+      }
+    }
+  }
+
+  .blockgroup.main-navigation{
+    ul.navbar-nav{
+
+      margin: auto;
+      border: none;      
+      >li{
+        border: none;
+        
+        margin-left: auto;
+        padding-left: auto;
+        width: auto;
+        text-align: left;
+        &:first-of-type{
+          border-width: none;
+        }
+        &:last-of-type{
+          border-width: none;
+        }
+        >a{                    
+          font-size: 1.5em;
+        }
+      }    
+    }
+  }
+  .block-system.block-menu:last-of-type{
+    ul{
+      border-bottom: none;
+    }
+  }
+
+
+
+  
+  
   #navbar .sf-menu {
     li{
       background: $sassy-orange;
