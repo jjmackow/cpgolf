@@ -26,6 +26,7 @@
 		.tab-container{
 			@include translateY(-9vw);
 		}
+	}
 	@media only screen and (max-width : 992px){
 		.slick--view--front-page-slider{
 		  .slick-dotted{
@@ -65,17 +66,6 @@
 				}
 			}
 		}		
-		.etabs{
-		  ul{
-		    .tab {
-		      a{
-		        >ul{		      
-		          font-size: 2vw;
-						}
-					}
-				}
-			}
-		}
 	}
 
 	
@@ -144,5 +134,4 @@
 	@media only screen and (max-width : 320px){
 		
 	}
-	
 	

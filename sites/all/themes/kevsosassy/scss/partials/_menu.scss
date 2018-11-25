@@ -24,27 +24,24 @@
         padding-left: auto;
         width: auto;
         text-align: left;
-        &:first-of-type{
-          border-width: none;
-        }
-        &:last-of-type{
-          border-width: none;
-        }
+        border-width: none;
         >a{                    
           font-size: 1.5em;
-        }
+        }        
       }    
     }
   }
-  .block-system.block-menu:last-of-type{
+  .block-system.block-menu:first-of-type{
     ul{
       border-bottom: none;
+      >li {
+        width: 11vw!important;
+        > a{
+          font-size: 1.25em;
+        }
+      }      
     }
   }
-
-
-
-  
   
   #navbar .sf-menu {
     li{
@@ -176,10 +173,13 @@
       }  
     }  
   }
-  #block-system-user-menu{
+  #block-system-user-menu{    
     ul.nav{
-      >li{
-       width: 9em;
+      
+      >li a{
+        width: 11em;
+        margin-left: 10px;
+        padding-right: 30px;
       }
     }
   }
