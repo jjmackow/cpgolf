@@ -1,7 +1,7 @@
 /**
  *menu overrides (superfish)
  */
-@media only screen and (min-width : 769px){
+@media only screen and (min-width : 768px){
   .blockgroup.main-navigation{
     ul.navbar-nav{
       >li{
@@ -26,7 +26,7 @@
         text-align: left;
         border-width: none;
         >a{                    
-          font-size: 1.5em;
+          font-size: 1.25em;
         }        
       }    
     }
@@ -174,10 +174,9 @@
     }  
   }
   #block-system-user-menu{    
-    ul.nav{
-      
+    ul.nav{      
       >li a{
-        width: 11em;
+        width: 9em;
         margin-left: 10px;
         padding-right: 30px;
       }
@@ -186,7 +185,7 @@
   #block-system-main-menu{
     ul.nav{
       >li{
-       width: 13em;
+       width: 10em;
       }
     }
   }

@@ -24,7 +24,7 @@
 	/* Medium Devices, Desktops */
 	@media only screen and (max-width : 1300px){
 		.tab-container{
-			@include translateY(-9vw);
+			@include translateY(-5vw);
 		}
 	}
 	@media only screen and (max-width : 992px){
@@ -39,11 +39,12 @@
 		}
 		.view-mode-slider.wrapper{
 			.group-overlay{
-				left: 50%;
-				.field-name-field-overlay-text{      
+				top: 45%;
+	      left: 45%;
+				.field-name-field-overlay-text{
 					.field-items{
 						font-size: 6.25vw;
-						width: 60vw;
+						width: 75vw;
 						line-height: 1em;
 						.field-item{
 							&:nth-of-type(1){
@@ -71,51 +72,43 @@
 	
 	/* Small Devices, Tablets */
 	@media only screen and (max-width : 768px){
-	.region-blockgroup-main-nav{
-		display: block;
-	
-		#block-system-user-menu,
-		#block-system-main-menu{
-			ul.nav{
-				display: block;
-			}
-		}
-		.view-mode-slider.wrapper{
-			.group-overlay{
-				left: 50%;
-				.field-name-field-overlay-text{      
-					.field-items{
-						font-size: 6.25vw;
-						width: 80vw;
-						line-height: 1em;
-						.field-item{
-							&:nth-of-type(1){
-								font-size: .625em;
-								line-height: 1em;
-							}
-							&:nth-of-type(2){
-								font-size: .95em;
-								font-weight: bold;
-								line-height: 1.1em;
-								margin: auto -15px auto 15px;
-							}
-							&:nth-of-type(3){           
-								font-size: 0.55em;
-								line-height: 1em;
-								margin: auto -15px 30px 30px;            
+		.region-blockgroup-main-nav{
+
+			.view-mode-slider.wrapper{
+				.group-overlay{
+					left: 50%;
+					.field-name-field-overlay-text{      
+						.field-items{
+							font-size: 6.25vw;
+							width: 80vw;
+							line-height: 1em;
+							.field-item{
+								&:nth-of-type(1){
+									font-size: .625em;
+									line-height: 1em;
+								}
+								&:nth-of-type(2){
+									font-size: .95em;
+									font-weight: bold;
+									line-height: 1.1em;
+									margin: auto -15px auto 15px;
+								}
+								&:nth-of-type(3){           
+									font-size: 0.55em;
+									line-height: 1em;
+									margin: auto -15px 30px 30px;            
+								}
 							}
 						}
 					}
 				}
-			}
+			}	
 		}	
 	}
-	/* Extra Small Devices, Phones */
-	
 
 	@media only screen and (max-width: 640px){
 		.tab-container{
-			@include translateY(0em);
+			@include translateY(-2opx);
 		}
 	}
 	/* Extra Small Devices, Phones */

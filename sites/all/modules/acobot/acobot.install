@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install/uninstall hooks for Acobot module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function acobot_uninstall() {
+  variable_del('acobot_domain');
+  variable_del('acobot_script');
+  variable_del('acobot_key');
+}

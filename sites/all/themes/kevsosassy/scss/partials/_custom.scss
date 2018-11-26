@@ -67,6 +67,10 @@ $down-arrow-icon = "../images/gray-arrow.png";
   }
 }
 
+
+
+
+
 h1,h2,h3,h4,h5,h6{
   font-family: 'Lato';
   font-weight: 100;
@@ -91,7 +95,12 @@ $slide-shade-secondary = rgba(gray,.5);
   padding: 15px auto auto 15px;
   height: 60px;
 }
-
+.navbar-fixed-top{
+  .container-fluid{
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+}
 .blockgroup.main-navigation{
   ul.navbar-nav{
     text-align: center;
@@ -299,6 +308,11 @@ body.node-type-photosphere{
     @include translateY(-70px);
   }  
 }
+
+body.front .main-container{
+  @include translateY(-5px);
+}
+
 .node-photosphere.view-mode-full{
   .page-header {
     margin-top: 0px;
@@ -679,7 +693,7 @@ body.node-type-photosphere{
           a{
             @include background-image(linear-gradient(rgba($basecolor, 1),
                                                   rgba($basecolor, 1) 30%,
-                                                  rgba($basecolor, 1) 70%,
+                                                  rgba($basecolor, 1) 85%,
                                                   rgba(#000000, 0)));
             border-color: black;
             border-width: 2px 2px 0 2px;
@@ -806,6 +820,45 @@ body.page-node-edit{
         width: 210px;
         order: 1;
       }      
+    }
+  }
+}
+/*PARAGRAPH FORMATTING*/
+.paragraph{
+  .field-name-field-venue-title{
+    .field-item:first-of-type{
+      font-size: larger;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .field-item:nth-of-type(2){
+      font-style: italic;
+      display: inline-block;
+      &:before{
+        padding-left: 5px;
+        content: " (";
+      }
+      &:after{
+        
+        content: ")";
+      }
+    }
+  }
+  
+  &:nth-of-type(2n-1){
+    .images{
+      text-align: right;
+      >div{
+        display: inline-block;
+      }
+    }
+  }
+  &:nth-of-type(2n){
+    .images{
+      float: left;
+      >div{
+        display: inline-block;
+      }
     }
   }
 }

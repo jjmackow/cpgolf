@@ -1,0 +1,12 @@
+name = Paragraphs Previewer
+description = Provides a rendered preview of a paragraphs item while on an entity form.
+core = 7.x
+package = Paragraphs
+dependencies[] = paragraphs
+
+; Information added by Drupal.org packaging script on 2017-07-19
+version = "7.x-1.0"
+core = "7.x"
+project = "paragraphs_previewer"
+datestamp = "1500490744"
+

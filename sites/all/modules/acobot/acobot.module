@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file
+ * Provides Drupal integration to Acobot.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function acobot_menu() {
+    $items = array();
+
+    $items['admin/config/development/acobot'] = array(
+        'title' => 'Acobot',
+        'description' => 'Upgrade your artificial intelligence by provide a key.',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('acobot_admin_form'),
+        'access arguments' => array('administer acobot settings'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    return $items;
+}
+
+function acobot_admin_form(){
+    $form = array();
+
+    $form['acobot_key'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Key'),
+        '#default_value' => variable_get('acobot_key'),
+        '#size' => 20,
+        '#maxlength' => 64,
+        '#description' => t("When you want to upgrade for more features. <a href='https://acobot.ai/user/register'>sign up</a> for a key and paste it above. "),
+        '#required' => false,
+    );
+
+    return system_settings_form($form);
+}
+
+/**
+ * Implements hook_page_alter().
+ * Insert Acobot JavaScript into page regions.
+ */
+function acobot_page_alter(&$page) {
+    global $user;
+
+    if (!$user->uid) {
+        if ($key = variable_get('acobot_key')){
+            $script = "<script src='https://acobot.ai/js/w?key=$key'></script>";
+        }
+        else {
+            $domain = acobot_url_domain($GLOBALS['base_url']);
+            $script = variable_get('acobot_script');
+
+            if (!$script or $domain != variable_get('acobot_domain')) {
+                if (acobot_is_active_domain($domain)) {
+                    if ($script = acobot_js($domain)) {
+                        variable_set('acobot_domain', $domain);
+                        variable_set('acobot_script', $script);
+                    }
+                }
+            }
+        }
+
+        if ($script) {
+            $page['content'][] = array('#markup' => $script);
+        }
+    }
+}
+
+function acobot_is_active_domain($domain){
+    if(filter_var(gethostbyname($domain), FILTER_VALIDATE_IP)){
+        return TRUE;
+    }
+    return false;
+}
+
+function acobot_url_domain($url){
+    $parse = parse_url($url);
+    return $parse['host'];
+}
+
+function acobot_js($domain){
+    $url = 'https://acobot.ai/api/simple/bot/'.$domain;
+
+    $curl = curl_init();
+    $opt = array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_USERAGENT => $domain,
+        CURLOPT_FOLLOWLOCATION=>true,
+        CURLOPT_URL => $url,
+    );
+
+    curl_setopt_array($curl, $opt);
+    $json = curl_exec($curl);
+
+    curl_close($curl);
+
+    $arr = json_decode($json, true);
+
+    if (!empty($arr['js'])){
+        return $arr['js'];
+    }
+    return null;
+}
