@@ -252,6 +252,9 @@ $slide-shade-secondary = rgba(gray,.5);
 }
 .node-blog{
   &.view-mode-preview{
+    .page-a-day{
+      @include translateY(-32px);
+    }
     .field-name-title{
       padding-left: 70px;
     }
@@ -620,7 +623,9 @@ body.front .main-container{
  *
  *
  */
-
+.view-latest-ideas{
+  overflow-x: hidden;
+}
 #block-views-latest-ideas-block-fp{
   $heading-color: $sassy-orange;  
   h5{
@@ -647,7 +652,7 @@ body.front .main-container{
       
     }
   }
-  >.view-latest-ideas{
+  >.view-latest-ideas{    
      background: rgba(0, 65, 130, 0.1);
      @include border-radius($medium-corners);
      .btn.btn-primary{
@@ -684,6 +689,13 @@ body.front .main-container{
 .view-fp-tabs-carousel{
   >.view-header{
     @include translateY(-15px);
+  }
+  >.view-content{
+    .field-name-title{
+      h2{
+        margin: 0 15px 15px;
+      }
+    }
   }
   .etabs{
     text-align: center;
