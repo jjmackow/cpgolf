@@ -1,0 +1,13 @@
+
+name = "Views Tabs Style Plugin"
+description = "Provides views results displayed in jQuery UI tabs"
+package = "Views"
+php = "5.2.4"
+core = "7.x"
+
+dependencies[] = "views"
+
+files[] = views_ui_tabs.module
+files[] = theme/views_ui_tabs.theme.inc
+files[] = views_ui_tabs.views.inc
+files[] = views_ui_tabs_plugin_style_tabs.inc

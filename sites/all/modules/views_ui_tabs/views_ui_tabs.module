@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ */
+function views_ui_tabs_views_api() {
+  return array(
+    'api' => '3.0',
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function views_ui_tabs_permission() {
+  $perms = array(
+    'reorder views_ui_tabs tabs' => array(
+      'title' => t('Can reorder tabs'),
+      'description' => t('Allows users to reorder tabs.'),
+      'restrict access' => TRUE,
+    ),
+  );
+
+  return $perms;
+}
