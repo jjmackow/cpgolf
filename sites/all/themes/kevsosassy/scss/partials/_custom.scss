@@ -681,7 +681,10 @@ body.front .main-container{
     }
   }
 }
-.view-fp-tabs-carousel{  
+.view-fp-tabs-carousel{
+  >.view-header{
+    @include translateY(-15px);
+  }
   .etabs{
     text-align: center;
     ul{
@@ -723,6 +726,7 @@ body.front .main-container{
             list-style: none;
             font-size: 2.1vw;
             text-transform: uppercase;
+            padding-bottom: 15px;
             /* The Front Page Tab Text; */
             li{            
               line-height: 1em;

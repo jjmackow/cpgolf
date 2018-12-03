@@ -16,6 +16,10 @@
 		.node-photosphere.view-mode-full .well.overlay.page-controls {
 			top: 8vh;
 		}
+		.node-photosphere.view-mode-full .well.overlay.page-controls.collapsible.collapsed {
+        top: 45vh;
+        left: 65vw;
+		}
 	}
 	@media only screen and (max-width : 670px){
 
