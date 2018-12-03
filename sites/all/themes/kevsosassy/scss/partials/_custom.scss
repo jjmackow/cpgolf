@@ -89,7 +89,7 @@ $slide-shade-secondary = rgba(gray,.5);
 
 .navbar.navbar-default{
   margin-bottom: 1em;
-  overflow-y: hidden;
+  
 }
 .navbar-brand {
   padding: 15px auto auto 15px;
@@ -97,10 +97,21 @@ $slide-shade-secondary = rgba(gray,.5);
 }
 .navbar-fixed-top{
   .container-fluid{
-    overflow-x: hidden;
-    overflow-y: visible;
+    
+    
   }
 }
+.front{
+  .node-page.view-mode-full {
+    .field-name-body{
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 2em;
+    }  
+  }
+
+}
+
 .blockgroup.main-navigation{
   ul.navbar-nav{
     text-align: center;
@@ -130,8 +141,10 @@ $slide-shade-secondary = rgba(gray,.5);
       }
     }    
   }
-  
-  #block-system-user-menu{    
+  &.region-blockgroup-main-nav{
+    overflow-x: hidden;
+  }
+  #block-system-user-menu{  
     @include background-image(linear-gradient(rgba(#ffffff, .1),
                                                 rgba($basecolor, .6) 30%,
                                                 rgba($basecolor, .8) 70%,
@@ -218,16 +231,62 @@ $slide-shade-secondary = rgba(gray,.5);
   }
 }
 
+.group-overlay{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width:100%;
+  
+  .html-h-tag{
+    position: absolute;
+    text-align: right;
+    z-index:-1;
+    top: -30px;
+    right: 10px;
+    padding:0 15px;
+    width: auto;
+    background: rgba(255, 255, 255, 1);
+  }
+  @include translate(0%,0%);
+  position: absolute;
+}
+.node-blog{
+  &.view-mode-preview{
+    .field-name-title{
+      padding-left: 70px;
+    }
+  }
+  &.node-teaser{
+    .body-group{
+      margin-bottom: $small-corners;
+      .body-field{
+        p:last-of-type{
+          display: inline;
+        } 
+      }
+    }
+    .group-overlay{
+      .html-h-tag{
+        
+      }
+    }
+  }
+}
+.more-link{
+  a{
+    padding-left: 5px;
+    color: $sassy-red;
+  }
+}
 .view-mode-slider.wrapper{
   .background-image{
     @include image-gradient-after();
   }
   .group-overlay{
-    position: absolute;
     top: 50%;
     left: 35%;
+    width: auto;
     @include translate(-50%,-50%);
-    position: absolute;  
     .field-name-field-overlay-text{      
       .field-items{
         color: white;
@@ -622,8 +681,7 @@ body.front .main-container{
     }
   }
 }
-.view-fp-tabs-carousel{
-  @include translateY(-30px);
+.view-fp-tabs-carousel{  
   .etabs{
     text-align: center;
     ul{
@@ -704,6 +762,46 @@ body.front .main-container{
     }  
   }
 }
+.block-views>.view-fp-tabs-carousel>.view-content{
+  margin: auto -15px 10px;
+  @include translateY(-$medium-corners);
+  background: none;
+  @include border-radius($medium-corners);  
+  padding: 0px;
+  
+  >.panel-container{
+
+    padding: $medium-corners;
+    margin-top: $medium-corners;
+    margin-bottom:  calc(-$medium-corners * 3);
+    @include border-radius( 0 0 $medium-corners $medium-corners);
+    border: 1px solid rgba($basecolor, 1);
+    border-width: 0 1px 1px 1px;  
+    @include background-image(linear-gradient(rgba($basecolor, 0),
+                                                  rgba($basecolor, 0) 30%,
+                                                  rgba($basecolor, .6) 70%,
+                                                  rgba($basecolor, 1)));
+    &:before{
+      @include background-image(linear-gradient(rgba($basecolor, 0),
+                                                  rgba($basecolor, .4) 30%,
+                                                  rgba($basecolor, 1) 70%,
+                                                  rgba(#fff, .1)));
+      border: 1px solid rgba($basecolor, 1);
+      border-width: 0 1px 0 1px;  
+      @include border-radius($medium-corners $medium-corners 0 0 );
+      content: " ";
+      display: table-cell;
+      
+      height: 100%;
+      width: 100%;      
+      position: absolute;
+      left:0;
+      top: calc(-$medium-corners * 3);      
+      
+    }
+  }
+}
+
 @media only screen and (min-width: 993px){
 .view-fp-tabs-carousel .etabs ul .tab a >ul {
 	font-size: 1.5vw;
