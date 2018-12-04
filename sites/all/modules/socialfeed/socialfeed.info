@@ -1,0 +1,13 @@
+name = Social Feed
+description = Provides user an option to easily fetch feeds from Facebook, Twitter or Instagram and then display them accordingly using block.
+core = 7.x
+version = 7.x-2.x
+package = Social
+configure = admin/config/services/socialfeed
+
+; Information added by Drupal.org packaging script on 2018-02-28
+version = "7.x-2.9"
+core = "7.x"
+project = "socialfeed"
+datestamp = "1519808586"
+
