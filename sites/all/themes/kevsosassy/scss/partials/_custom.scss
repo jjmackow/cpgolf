@@ -1,54 +1,5 @@
 /**/
-$basecolor=#f8db51;
-$basecolor-dim = 0.7;
-$basecolor-curve = 15px;
-$basecolor-compliment = #323232;
-$compliment-underline-color = gray;
-$bsum-angle = 15deg;
 
-$btn-default-color = #555555;
-$btn-default-border-color = rgba(0, 0, 0, 0.1);
-$btn-default = #555555;
-.btn.btn-warning a,
-.btn.btn-success a{
-  color: white;
-}
-$sassy-red = red;
-
-$sassy-orange = rgba(206, 85, 43, 0.8);
-$sassy-gray = rgba(91,91,91,1);
-$sassy-clear-color = rgba(0,0,0,0);
-
-
-$menu-font-family = "Arial";
-
-
-$overlay-bg-color = rgba(255,255,255,.8);
-$overlay-bg-color-open = rgb(247, 247, 247);
-$overlay-color-open = rgb(64, 64, 64);
-
-$overlay-bg-color-slider = rgba(0, 82, 164, 0.8);
-$overlay-bg-color-text = #ffff80;
-$page_action_bg = rgba(255,255,255,1);
-$calloutcolor-bg = orange;
-$callout-color-text = orange;
-$std-space = 15px;
-
-$overlay-arrow-bg-color = #ffff80;
-$overlay-arrow-color = #168def;
-
-$small-corners = 5px;
-$medium-corners = 15px;
-$large-corners = 25px;
-
-$jump_slider_text_color = #ffff80;
-$jump_slider_text_bg = #31383e;
-$jump_slider_options_bg = #76b7fe;
-$jump_slider_text_arrow_bg= $jump_slider_text_color;
-
-$page_bg_color = white;
-
-$down-arrow-icon = "../images/gray-arrow.png";
 @import "partials/variables";
 @import "partials/bg_mixins";
 
@@ -152,6 +103,7 @@ $slide-shade-secondary = rgba(gray,.5);
       }
       @include transition-duration(.420s);
       >a{
+        color: $nav-bar-links;
         @include transition-duration(.420s);
         font-family: $menu-font-family;
         font-variant: small-caps;
@@ -180,7 +132,7 @@ $slide-shade-secondary = rgba(gray,.5);
       color: $basecolor-compliment;
       &:hover,
       &:focus{
-        color: white;
+        color: $nav-bar-links-over;
       }
     }    
 
@@ -735,9 +687,9 @@ body.front .main-container{
         zoom:1;
         *display:inline;
         a{
-          @include background-image(linear-gradient(rgba($basecolor, 1),
-                                                  rgba($basecolor, .6) 30%,
-                                                  rgba($basecolor, .8) 70%,
+          @include background-image(linear-gradient(rgba($fp-tab-background, 1),  
+                                                  rgba($fp-tab-background, .6) 30%,
+                                                  rgba($fp-tab-background, .8) 70%,
                                                   rgba(#000000, 0)));
           
           
@@ -764,8 +716,8 @@ body.front .main-container{
             /* The Front Page Tab Text; */
             li{            
               line-height: 1em;
-              white-space: nowrap;
-              color: rgba(black, .6);
+              white-space: nowrap;              
+              color: $fp-tab-text;
               &:nth-of-type(1){
                 font-size: 1.4em;
               }

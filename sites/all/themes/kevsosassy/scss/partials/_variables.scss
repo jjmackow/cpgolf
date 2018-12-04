@@ -1,3 +1,68 @@
+//
+//  kevsosassyspecific variables from custom
+//
+
+$basecolor=rgb(46, 142, 18);
+$basecolor-dim = 0.7;
+$basecolor-curve = 15px;
+$basecolor-compliment = #e9e9e9;
+$compliment-underline-color = gray;
+$bsum-angle = 15deg;
+
+$btn-default-color = #555555;
+$btn-default-border-color = rgba(0, 0, 0, 0.1);
+$btn-default = #555555;
+.btn.btn-warning a,
+.btn.btn-success a{
+  color: white;
+}
+$sassy-red = red;
+
+$sassy-orange = rgba(206, 85, 43, 0.8);
+$sassy-gray = rgba(91,91,91,1);
+$sassy-clear-color = rgba(0,0,0,0);
+
+
+$menu-font-family = "Arial";
+
+
+$overlay-bg-color = rgba(255,255,255,.8);
+$overlay-bg-color-open = rgb(247, 247, 247);
+$overlay-color-open = rgb(64, 64, 64);
+
+$overlay-bg-color-slider = rgba(0, 82, 164, 0.8);
+$overlay-bg-color-text = #ffff80;
+$page_action_bg = rgba(255,255,255,1);
+$calloutcolor-bg = orange;
+$callout-color-text = orange;
+$std-space = 15px;
+
+
+$fp-tab-background = $basecolor;
+$fp-tab-text = rgba(white, .9);
+$fp-tab-text-over = rgba(#226420, .9);
+
+$nav-bar-links = rgb(221, 58, 40);
+$nav-bar-links-over = rgb(237, 198, 124);
+$overlay-arrow-bg-color = #ffff80;
+$overlay-arrow-color = #168def;
+
+$small-corners = 5px;
+$medium-corners = 15px;
+$large-corners = 25px;
+
+$jump_slider_text_color = #ffff80;
+$jump_slider_text_bg = #31383e;
+$jump_slider_options_bg = #76b7fe;
+$jump_slider_text_arrow_bg= $jump_slider_text_color;
+
+$page_bg_color = white;
+
+$down-arrow-icon = "../images/gray-arrow.png";
+
+
+
+
 $bootstrap-sass-asset-helper: false !default;
 //
 // Variables

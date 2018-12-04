@@ -161,7 +161,7 @@
             }
             &:focus,
             &:hover{
-              color: white;
+              color:$fp-tab-text-over;
               &:before{
                 visibility: visible;
                 -webkit-transform: scaleX(1);
