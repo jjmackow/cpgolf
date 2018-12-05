@@ -221,9 +221,9 @@ $slide-shade-secondary = rgba(gray,.5);
     position: absolute;
     text-align: right;
     z-index:-1;
-    top: -30px;
-    right: 10px;
-    padding:0 15px;
+    top: 0px;
+    right: -15px;
+    padding:0 15px 0 62px;
     width: auto;
     background: rgba(255, 255, 255, 1);
   }
@@ -618,9 +618,9 @@ body.front .main-container{
      margin: $std-space auto;
      background: rgba(0,0,0,.1);
      @include border-radius($large-corners);
-     h4{
+     h2{
       margin: auto $std-space;
-      font-size: larger;
+      font-size: 17px;
       color: $heading-color;
       font-weight: bold;
      }
