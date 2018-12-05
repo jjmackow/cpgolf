@@ -150,7 +150,7 @@
               position: absolute;
               height: 2px;
               width: 100%;
-              background-color: yellow;
+              background-color: $menu_underline_color;   //this makes the animated underlines
               bottom: 0;
               left:0;
               visibility: hidden;

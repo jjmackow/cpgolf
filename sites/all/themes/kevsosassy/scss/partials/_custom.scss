@@ -58,15 +58,21 @@ $slide-shade-secondary = rgba(gray,.5);
 .front{
   .node-page.view-mode-full {
     .field-name-body{
-      text-align: center;
+      text-align: left;
       margin-bottom: 15px;
-      font-size: 2em;
+      font-size: 30px;
+      line-height: 26px;
+      color: $callout-color-text;
+      
     }
     .footer{
       .field-name-body{
         font-size: 1em!important;
       }
     }
+  }
+  #block-system-main{
+    margin-top: 15px;
   }
 }
 .footer{
@@ -166,6 +172,9 @@ $slide-shade-secondary = rgba(gray,.5);
         button{
           background: rgba(255,255,255,.6);
           @include border-radius($large-corners);
+          &:before{
+            content: ""; //controls the center of the dot use an asterisk
+          }
         }
         &.slick-active{
           button{
@@ -660,6 +669,10 @@ body.front .main-container{
     }
   }
 }
+.tri-tabs{
+  margin: auto -15px;
+}
+
 .view-fp-tabs-carousel{
   >.view-header{
     @include translateY(-15px);
@@ -671,8 +684,21 @@ body.front .main-container{
       }
     }
   }
+  .node-page.well>.row{
+    
+    h2{
+      text-align: left;
+      color: $tab-content-header;
+      font-variant: small-caps;
+      font-size: 18px;
+      text-shadow: white;
+      font-family: $googleFont-headline; //placeholder - see google fonts
+      margin-left: -15px;
+    }
+  }
   .etabs{
     text-align: center;
+    
     ul{
       margin: 0;
       padding: 0;
@@ -687,15 +713,16 @@ body.front .main-container{
         zoom:1;
         *display:inline;
         a{
-          @include background-image(linear-gradient(rgba($fp-tab-background, 1),  
-                                                  rgba($fp-tab-background, .6) 30%,
-                                                  rgba($fp-tab-background, .8) 70%,
-                                                  rgba(#000000, 0)));
+          @include background-image(linear-gradient(rgba($fp-tab-background, 1),
+                                                  rgba($fp-tab-background, .6) 20%,
+                                                  rgba($fp-tab-background, .1) 30%,
+                                                  rgba($fp-tab-background, .1) 70%,
+                                                  rgba($fp-tab-background, .05)));
           
           
           display: block;
-          padding: 5px;
-          margin: 0 .5vw;
+          padding: 2px;
+          margin: 0 .5vw;          
           //background: #eee; border: solid 1px #999;
           border-bottom: none;
           @include border-radius($small-corners $small-corners 0 0);        
@@ -741,9 +768,12 @@ body.front .main-container{
           a{
             @include background-image(linear-gradient(rgba($basecolor, 1),
                                                   rgba($basecolor, 1) 30%,
-                                                  rgba($basecolor, 1) 85%,
+                                                  rgba($basecolor, 1) 45%,
                                                   rgba(#000000, 0)));
             border-color: black;
+            li{            
+              color: $fp-tab-text-active-color;
+            }
             border-width: 2px 2px 0 2px;
             text-decoration: none;
           }
@@ -760,22 +790,21 @@ body.front .main-container{
   padding: 0px;
   
   >.panel-container{
-
     padding: $medium-corners;
     margin-top: $medium-corners;
     margin-bottom:  calc(-$medium-corners * 3);
     @include border-radius( 0 0 $medium-corners $medium-corners);
     border: 1px solid rgba($basecolor, 1);
     border-width: 0 1px 1px 1px;  
-    @include background-image(linear-gradient(rgba($basecolor, 0),
-                                                  rgba($basecolor, 0) 30%,
+    @include background-image(linear-gradient(rgba($basecolor, 0) 10%,
+                                                  rgba($basecolor, .10) 40%,
                                                   rgba($basecolor, .6) 70%,
                                                   rgba($basecolor, 1)));
     &:before{
       @include background-image(linear-gradient(rgba($basecolor, 0),
-                                                  rgba($basecolor, .4) 30%,
-                                                  rgba($basecolor, 1) 70%,
-                                                  rgba(#fff, .1)));
+                                                  rgba($basecolor, .1) 10%,
+                                                  rgba($basecolor, .2) 20%,
+                                                  rgba($basecolor, .1)));
       border: 1px solid rgba($basecolor, 1);
       border-width: 0 1px 0 1px;  
       @include border-radius($medium-corners $medium-corners 0 0 );

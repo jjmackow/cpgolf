@@ -2,10 +2,13 @@
 //  kevsosassyspecific variables from custom
 //
 
-$basecolor=rgb(46, 142, 18);
+$googleFont-headline = "Prosto One";
+
+
+$basecolor=#f16334;
 $basecolor-dim = 0.7;
 $basecolor-curve = 15px;
-$basecolor-compliment = #e9e9e9;
+$basecolor-compliment = #323232; /* used on user menu links text color,*/
 $compliment-underline-color = gray;
 $bsum-angle = 15deg;
 
@@ -24,7 +27,7 @@ $sassy-clear-color = rgba(0,0,0,0);
 
 
 $menu-font-family = "Arial";
-
+$menu_underline_color = #d0d0d0;
 
 $overlay-bg-color = rgba(255,255,255,.8);
 $overlay-bg-color-open = rgb(247, 247, 247);
@@ -39,10 +42,15 @@ $std-space = 15px;
 
 
 $fp-tab-background = $basecolor;
-$fp-tab-text = rgba(white, .9);
-$fp-tab-text-over = rgba(#226420, .9);
+$fp-tab-text = rgba(#000000, .9);
+$fp-tab-text-active-color = white;
+$fp-tab-text-over = rgba(#13068a, .9);
 
-$nav-bar-links = rgb(221, 58, 40);
+$tab-content-header = orange;
+
+
+
+$nav-bar-links = rgb(255, 255, 236);
 $nav-bar-links-over = rgb(237, 198, 124);
 $overlay-arrow-bg-color = #ffff80;
 $overlay-arrow-color = #168def;
@@ -59,7 +67,6 @@ $jump_slider_text_arrow_bg= $jump_slider_text_color;
 $page_bg_color = white;
 
 $down-arrow-icon = "../images/gray-arrow.png";
-
 
 
 
