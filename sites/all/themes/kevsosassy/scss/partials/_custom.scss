@@ -172,19 +172,26 @@ $slide-shade-secondary = rgba(gray,.5);
         button{
           background: rgba(255,255,255,.6);
           @include border-radius($large-corners);
+          @include box-shadow();
           &:before{
             content: ""; //controls the center of the dot use an asterisk
           }
         }
         &.slick-active{
           button{
-            background: rgba(255,255,255,1);
+            background: rgba(255,255,255,1);            
           }
         }
       }
     }  
   }
-  .field-name-field-video .field-item{
+  video{
+    min-width: 100%;
+    height: auto;
+    @include translateY(-25%);
+    overflow-y: hidden;
+  }
+  .field-name-field-video .field-item{    
     margin-top: 15%;
     position:relative;
     display: inline-block;
