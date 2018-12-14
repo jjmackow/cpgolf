@@ -5,12 +5,14 @@
 $googleFont-headline = "Prosto One";
 
 
-$basecolor=#f16334;
+$basecolor=#df601a;
 $basecolor-dim = 0.7;
 $basecolor-curve = 15px;
-$basecolor-compliment = #323232; /* used on user menu links text color,*/
+$basecolor-compliment = #ffffff; /* used on user menu links text color,*/
 $compliment-underline-color = gray;
 $bsum-angle = 15deg;
+
+$blog-node-bg = #485563;
 
 $btn-default-color = #555555;
 $btn-default-border-color = rgba(0, 0, 0, 0.1);
@@ -42,7 +44,7 @@ $std-space = 15px;
 
 
 $fp-tab-background = $basecolor;
-$fp-tab-text = rgba(#000000, .9);
+$fp-tab-text = rgba(#ffffe6, .9);
 $fp-tab-text-active-color = white;
 $fp-tab-text-over = rgba(#13068a, .9);
 

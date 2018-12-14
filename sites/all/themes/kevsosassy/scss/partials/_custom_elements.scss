@@ -1,4 +1,26 @@
 /*custom block constructs*/
+.btn{
+  a{
+    font-variant: small-caps;
+    @include transition-duration(.420s);
+    &:focus,
+    &:hover{
+      
+    }
+  }
+  &.btn-default{
+    
+  }
+  &.btn-info{
+    a{
+      
+    }
+  }
+  &.btn-primary{
+    
+  }
+  
+}
 .page-a-day{
   $pad-padding = 3px;
   display: inline-block;

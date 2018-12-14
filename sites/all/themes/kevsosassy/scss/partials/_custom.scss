@@ -17,19 +17,15 @@
     margin: auto 15px;
   }
 }
-
-
 body{
   color: #262626;
   font-size: 1.1em;
 }
-
-
 h1,h2,h3,h4,h5,h6{
   font-family: 'Lato';
   font-weight: 100;
+  color: white;
 }
-
 .node.view-mode-full{
   max-width: 1024px;  
 }
@@ -87,7 +83,52 @@ $slide-shade-secondary = rgba(gray,.5);
     }    
   }
 }
+/*should be done for all pages that are not front*/
+.page-blog{
 
+}
+
+body.page-blog{
+  #block-system-main{
+    .node-blog.view-mode-preview{
+      background: $blog-node-bg;
+      margin-bottom: 30px;
+      h2{
+        color: $fp-tab-text;
+      }
+      .field-name-body{
+        color: white;
+      }
+    }
+    .node-blog.node-teaser{
+      /* Personal Blogs */
+      
+      h2{
+        color: red;
+      }
+      .group-overlay{
+        position: relative;
+        
+      }
+    }
+  }  
+}
+
+.bef-select-as-links{  
+  .form-item{
+    margin: 10px;
+    display: inline-block;
+    a{
+      padding: 2px 10px;
+      display: block;      
+      @include border-radius(10px);
+      background: black;
+      &.active{
+        color: yellow;
+      }
+    }    
+  }
+}
 .blockgroup.main-navigation{
   ul.navbar-nav{
     text-align: center;
@@ -691,9 +732,10 @@ body.front .main-container{
       }
     }
   }
-  .node-page.well>.row{
-    
-    h2{
+  .node-page.well{
+    background: white;
+    >.row{
+     h2{
       text-align: left;
       color: $tab-content-header;
       font-variant: small-caps;
@@ -703,6 +745,7 @@ body.front .main-container{
       margin-left: -15px;
     }
   }
+}
   .etabs{
     text-align: center;
     
@@ -720,10 +763,11 @@ body.front .main-container{
         zoom:1;
         *display:inline;
         a{
-          @include background-image(linear-gradient(rgba($fp-tab-background, 1),
-                                                  rgba($fp-tab-background, .6) 20%,
-                                                  rgba($fp-tab-background, .1) 30%,
-                                                  rgba($fp-tab-background, .1) 70%,
+          @include background-image(linear-gradient(rgba($fp-tab-background, .6),
+                                                  rgba($fp-tab-background, .7) 10%,
+                                                  rgba($fp-tab-background, 1) 20%,
+                                                  rgba($fp-tab-background, .6) 50%,
+                                                  rgba($fp-tab-background, .4) 80%,
                                                   rgba($fp-tab-background, .05)));
           
           
