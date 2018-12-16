@@ -20,7 +20,11 @@
 body{
   color: #262626;
   font-size: 1.1em;
+  .node-blog{
+    color: white;
+  }
 }
+
 h1,h2,h3,h4,h5,h6{
   font-family: 'Lato';
   font-weight: 100;
@@ -654,8 +658,16 @@ body.front .main-container{
  *
  *
  */
-.view-latest-ideas{
+.view-footer>.view-latest-ideas{
   overflow-x: hidden;
+  .view-content {
+    display: flex;
+    margin: auto -5px;
+    > div{
+      margin: 2px;
+      display: flex;
+    }
+  }
 }
 #block-views-latest-ideas-block-fp{
   $heading-color: $sassy-orange;  
@@ -664,7 +676,7 @@ body.front .main-container{
   }
   .node-teaser{
      margin: $std-space auto;
-     background: rgba(0,0,0,.1);
+     background: rgba(255,255,255,.1);
      @include border-radius($large-corners);
      h2{
       margin: auto $std-space;
@@ -861,7 +873,7 @@ body.front .main-container{
       @include border-radius($medium-corners $medium-corners 0 0 );
       content: " ";
       display: table-cell;
-      
+      z-index: -999;
       height: 100%;
       width: 100%;      
       position: absolute;
@@ -1028,5 +1040,21 @@ body.page-node-edit{
         display: inline-block;
       }
     }
+  }
+}
+/*Staff Profile*/
+.node-staff-profile.node-teaser{
+  .group-overlay{
+    margin-left: 15px;
+    padding-left: 16px;
+    height: 100%;
+    top: 100%;
+    @include translateY(-60px);
+  }
+  .staff-name{
+    text-shadow: rgb(0,0,0) 1px 1px 5px;
+  }
+  .field-name-body{
+    color: $dark-background-text-color;
   }
 }
