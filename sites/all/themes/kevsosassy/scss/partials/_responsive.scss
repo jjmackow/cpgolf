@@ -35,6 +35,28 @@
 		.view-fp-tabs-carousel{
 			@include translateY(-30px);
 		}
+		body.page-events-apres .page-wrapper .view-header{
+			.field-name-field-image{
+				.field-items{
+					margin: auto -30px 10px;
+				}
+			}
+			.node-page.node-teaser .field-name-body{
+				h4{
+			    font-size: 1.5em;
+			    font-weight: bold;
+			    padding-left: 15px;
+				}
+				h5{
+          padding-left: 25vw;
+				  font-size: 1.5em;
+				}
+			}
+			.date-month {
+        @include translate(5vw, -35vw);
+        font-size: 2em;
+			}
+		}
 	}
 	@media only screen and (max-width : 670px){
 

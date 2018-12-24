@@ -5,10 +5,10 @@
 $googleFont-headline = "Prosto One";
 
 $dark-background-text-color: white;
-$basecolor=#df601a;
+$basecolor=#688211;
 $basecolor-dim = 0.7;
 $basecolor-curve = 15px;
-$basecolor-compliment = #ffffff; /* used on user menu links text color,*/
+$basecolor-compliment = #ffff55; /* used on user menu links text color,*/
 $compliment-underline-color = gray;
 $bsum-angle = 15deg;
 
@@ -26,7 +26,8 @@ $sassy-red = red;
 $sassy-orange = rgba(206, 85, 43, 0.8);
 $sassy-gray = rgba(91,91,91,1);
 $sassy-clear-color = rgba(0,0,0,0);
-
+$primary-btn-bg-color = rgb(46,142,18);
+$primary-btn-color = yellow;
 
 $menu-font-family = "Arial";
 $menu_underline_color = #d0d0d0;
@@ -48,11 +49,11 @@ $fp-tab-text = rgba(#ffffe6, .9);
 $fp-tab-text-active-color = white;
 $fp-tab-text-over = rgba(#13068a, .9);
 
-$tab-content-header = orange;
+$tab-content-header = white;
 
 
 
-$nav-bar-links = rgb(255, 255, 236);  //main navigator color forlinks (top level)
+$nav-bar-links = rgb(128, 128, 128);  //main navigator color forlinks (top level)
 $nav-bar-links-over = rgb(237, 198, 124);
 
 $overlay-arrow-bg-color = #9bef8f;

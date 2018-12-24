@@ -11,15 +11,53 @@
   &.btn-default{
     
   }
-  &.btn-info{
+  &.btn-primary{     
+    background-color: $primary-btn-bg-color;
+    border-color: #336699;
+    padding: 5px 15px;
+    margin: auto 15px;
     a{
-      
+      border: 0px;
+      color: $primary-btn-color;
+      display: block;
+
+      &:focus,
+      &:hover{
+        border:0px;
+      }
     }
   }
-  &.btn-primary{
+  &.btn-info{
     
+  }  
+}
+.region-content>.block-system{
+.view-events{
+  .view-content{
+    h3{
+      color: $dark-background-text-color;
+      @include background-image(
+      linear-gradient(to bottom right, rgba($basecolor,.80), rgba(0,0,0,0)));
+      .date-display-single{
+        b{
+          &:nth-of-type(1){
+            
+          }
+          &:nth-of-type(2){
+            display: none;
+            &:before{
+              content: " ";
+    
+            }
+          }
+        }    
+      }    
+    }
+    div.views-row{
+      border-bottom: 1px solid gray;
+    }
   }
-  
+}
 }
 .page-a-day{
   $pad-padding = 3px;

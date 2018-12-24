@@ -28,7 +28,8 @@ body{
 h1,h2,h3,h4,h5,h6{
   font-family: 'Lato';
   font-weight: 100;
-  color: white;
+  color: rgb(87, 117, 38);
+  padding: 5px 10px;
 }
 .node.view-mode-full{
   max-width: 1024px;  
@@ -49,12 +50,7 @@ $slide-shade-secondary = rgba(gray,.5);
   padding: 15px auto auto 15px;
   height: 60px;
 }
-.navbar-fixed-top{
-  .container-fluid{
-    
-    
-  }
-}
+
 .front{
   .node-page.view-mode-full {
     .field-name-body{
@@ -90,6 +86,66 @@ $slide-shade-secondary = rgba(gray,.5);
 /*should be done for all pages that are not front*/
 .page-blog{
 
+}
+body.page-events-apres{
+  .page-wrapper{
+    margin-top: 50px;
+    .tab-months{
+      .view-content{
+        .tabs-ui-nav-wrapper{
+          .ui-tabs-nav{
+            .ui-state-default{
+              b{
+                &:nth-of-type(1){
+                }
+                &:nth-of-type(2){
+                  display: none;  
+                }
+              }
+              &.ui-state-active{
+                
+              }
+            }
+          }
+        }
+      }
+    }
+    .view-header{
+      .date-month{
+        @include translate(150px, -210px);
+        color: #2b8d18;
+        font-size: 2em;
+        b{
+          &:nth-of-type(2){
+            display:none;
+          }
+        }
+      }
+      h3{
+        color: #2b8d18;
+        font-size: 2.5em;
+      }
+      .node-page.node-teaser{
+        position:relative;
+        
+        .field-name-body{
+          position: absolute;
+          top:0;
+          left:0;
+          h4{
+            color: #2b8d18;
+            font-size: 2.5em;
+            padding-left: 15px;
+          }
+          h5{
+            padding-left: 135px;
+            color: #2b8d18;
+            font-size: 2em;
+          }  
+        }        
+      }
+    }
+  }  
 }
 
 body.page-blog{
@@ -133,7 +189,9 @@ body.page-blog{
     }    
   }
 }
+
 .blockgroup.main-navigation{
+  
   ul.navbar-nav{
     text-align: center;
     margin: 1% 5% 2%;
@@ -404,8 +462,12 @@ body.node-type-photosphere{
 }
 
 body.front .main-container{
-  @include translateY(-5px);
+  @include translateY(30px);
 }
+body.not-front .main-container{
+  margin-top: 70px;
+}
+
 
 .node-photosphere.view-mode-full{
   .page-header {
@@ -747,14 +809,26 @@ body.front .main-container{
   .node-page.well{
     background: white;
     >.row{
+      .group-overlay{
+        height: 100%;
+        >.field-name-title{
+          
+          position: absolute;
+          bottom: 0;
+          left: 0px;
+          padding-left: 10px;
+          width: 270px;
+        }
+      }
      h2{
       text-align: left;
       color: $tab-content-header;
       font-variant: small-caps;
       font-size: 18px;
-      text-shadow: white;
+      text-shadow: black 1px 1px 5px;
+      font-weight: bold;
       font-family: $googleFont-headline; //placeholder - see google fonts
-      margin-left: -15px;
+      margin-left: 15px;
     }
   }
 }
@@ -1043,18 +1117,23 @@ body.page-node-edit{
   }
 }
 /*Staff Profile*/
-.node-staff-profile.node-teaser{
-  .group-overlay{
-    margin-left: 15px;
-    padding-left: 16px;
-    height: 100%;
-    top: 100%;
-    @include translateY(-60px);
+.view-staff .views-row.well{
+  @include background-image(
+      linear-gradient(to bottom right, rgba($basecolor,.80), rgba(0,0,0,0)));
+  .node-staff-profile.node-teaser{
+    .group-overlay{
+      margin-left: 15px;
+      padding-left: 16px;
+      height: 100%;
+      top: 100%;
+      @include translateY(-60px);
+    }
+    .staff-name{
+      text-shadow: rgb(0,0,0) 1px 1px 5px;
+    }
+    .field-name-body{
+      color: $dark-background-text-color;
+    }
   }
-  .staff-name{
-    text-shadow: rgb(0,0,0) 1px 1px 5px;
-  }
-  .field-name-body{
-    color: $dark-background-text-color;
-  }
+  
 }
